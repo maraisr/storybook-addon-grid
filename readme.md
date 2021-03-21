@@ -1,5 +1,5 @@
 <div align="center">
-	<h1><img src="./shots/logo.png" alt="storybook-addon-grid"/></h1>
+	<h1><img src="./shots/logo.svg" alt="storybook-addon-grid"/></h1>
 	<p align="center"><code>yarn add storybook-addon-grid</code> makes column grids simple</p>
 	<hr />
 	<span>
@@ -14,6 +14,8 @@
 		</a>
 	</span>
 </div>
+
+<br />
 
 ![example that shows how the columns look when enabled](./shots/example.png)
 
@@ -41,12 +43,12 @@ via a keyboard shortcut <kbd>Ctrl</kbd> + <kbd>G</kbd>.
 
 ### _Parameters_
 
-Column Design system is defined by 3 values:
-- `number` of columns
-- the `gap` between them
-- the `gutter` - minimal margin between system and the screen
-- `maximal-width` for the system to limit maximum width of every column as well.
+Column design system is defined by 3 values:
 
+- the number of `columns`
+- the `gap` between them
+- the `gutter` — minimal margin between the system and the screen
+- `maximal-width` for the system to limit maximum width of all columns as well.
 
 #### `gridOn?: boolean = false`
 
