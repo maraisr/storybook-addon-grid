@@ -6,20 +6,29 @@ const pkg = require('../package.json');
 const esbuild = require('./esbuild');
 
 const externals = [
-	...Object.keys(pkg.dependencies ?? {})
+	...Object.keys(pkg.peerDependencies ?? {}),
+	...Object.keys(pkg.dependencies ?? {}),
 ];
 
 async function bundle(input, output) {
 	await esbuild.build(input, output, externals);
 
-	let dts = input.replace(/\.[mc]?[tj]s$/, '.d.ts');
+	let dts = input.replace(/\.[mc]?[tj]sx?$/, '.d.ts');
 	if (!existsSync(dts)) return;
 
 	let info = parse(input);
-	info.base = 'index.d.ts';
-	info.dir = info.name;
+	info.base = `${info.name}.d.ts`;
+	info.dir = 'dist';
 
 	copyFileSync(dts, format(info));
 }
 
 bundle('src/preset.ts', pkg.exports['./preset']);
+bundle('src/register.tsx', {
+	require: './dist/register.js',
+	import: './dist/register.mjs',
+});
+bundle('src/config.ts', {
+	require: './dist/config.js',
+	import: './dist/config.mjs',
+});

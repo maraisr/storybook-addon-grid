@@ -4,22 +4,23 @@ const esbuild = require('esbuild');
 
 /** @type {esbuild.CommonOptions} */
 const options = {
-	target: 'esnext',
+	target: 'es2015',
 	sourcemap: false,
 	treeShaking: true,
 	minifySyntax: true,
+	platform: 'browser',
 	minifyIdentifiers: true,
 	logLevel: 'info', // summary
-}
+};
 
 /**
  * @param {string} input
  * @param {string} output
  * @param {string[]} [externals]
  */
-exports.build = function (input, output, externals=[]) {
-	return Promise.all(Object.entries(output)
-		.map(([type, outfile]) => {
+exports.build = function (input, output, externals = []) {
+	return Promise.all(
+		Object.entries(output).map(([type, outfile]) => {
 			esbuild.build({
 				...options,
 				bundle: true,
@@ -28,17 +29,18 @@ exports.build = function (input, output, externals=[]) {
 				entryPoints: [input],
 				external: externals,
 			});
-		}));
-}
+		}),
+	);
+};
 
 /**
  * @param {string} source
  * @param {esbuild.TransformOptions} [overrides]
  */
-exports.transform = function (source, overrides={}) {
+exports.transform = function (source, overrides = {}) {
 	return esbuild.transformSync(source, {
 		...options,
 		format: 'cjs',
-		...overrides
+		...overrides,
 	});
-}
+};

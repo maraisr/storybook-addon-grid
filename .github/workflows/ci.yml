@@ -7,16 +7,20 @@ on:
 
 jobs:
     test:
-        name: Node.js v${{ matrix.nodejs }}
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                nodejs: [10, 12, 14, 15]
         steps:
             - uses: actions/checkout@main
+
+            - name: (env) setup
+              id: setup
+              run:
+                  echo "::set-output name=node_version::$(jq -r '.volta.node'
+                  package.json)"
+
             - uses: actions/setup-node@main
               with:
-                  node-version: ${{ matrix.nodejs }}
+                  node-version: ${{ steps.setup.outputs.node_version }}
+                  check-latest: true
 
             - name: (env) yarn global
               run: |-
@@ -28,22 +32,14 @@ jobs:
               with:
                   path: ${{ env.YARN_CACHE_DIR }}
                   key:
-                      ${{ runner.os }}-node${{ matrix.nodejs }}-${{
-                      hashFiles('./package.json', './yarn.lock') }}
+                      ${{ runner.os }}-node${{ steps.setup.outputs.node_version
+                      }}-${{ hashFiles('./yarn.lock') }}
 
             - name: Install
-              run: |-
-                  yarn --frozen-lockfile;
-                  yarn global add nyc;
+              run: yarn --frozen-lockfile
 
             - name: Compile
               run: yarn build
 
             - name: Type Check
               run: yarn typecheck
-
-            - name: Test w/ Coverage
-              run: nyc --include=src yarn test
-
-            - name: Benchmark
-              run: yarn bench

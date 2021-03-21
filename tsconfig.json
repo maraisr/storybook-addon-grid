@@ -4,10 +4,10 @@
 		"rootDir": "./",
 		"outDir": "dist",
 		"target": "ES2019",
-		"declaration": false,
+		"declaration": true,
 		"removeComments": false,
 		"lib": ["DOM", "ESNext"]
 	},
-	"files": ["src/index.ts"],
+	"files": ["src/preset.ts"],
 	"exclude": ["node_modules"]
 }
