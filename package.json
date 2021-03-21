@@ -61,7 +61,7 @@
 		]
 	},
 	"dependencies": {
-		"@emotion/cache": "^11.1.3",
+		"@emotion/cache": "^10.0.29",
 		"@storybook/addons": "^6.1.21",
 		"@storybook/api": "^6.1.21",
 		"@storybook/components": "^6.1.21",

@@ -1,16 +1,16 @@
 import createCache from '@emotion/cache';
 import { useAddonState, useParameter } from '@storybook/api';
+import { CacheProvider, styled } from '@storybook/theming';
 import { diary } from 'diary';
-import { useMemo } from 'react';
 import * as React from 'react';
+import { useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import type { AddonParameters, AddonState } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
-import { styled, CacheProvider } from '@storybook/theming';
 
 const { info } = diary(`${ADDON_ID}:Grids`);
 
-const Wrapper = styled.div<{ active: bolean }>(({ active }) => ({
+const Wrapper = styled.div<{ active: boolean }>(({ active }) => ({
 	opacity: active ? '1' : '0',
 	transition: 'opacity 0.08s linear',
 	position: 'relative',
@@ -57,7 +57,7 @@ const Grids = () => {
 		gutter = '50px',
 		maxWidth = '1024px',
 	} = useParameter<AddonParameters>(PARAM_KEY, {});
-	const [state] = useAddonState<AddonState>(ADDON_ID, {});
+	const [state] = useAddonState<AddonState>(ADDON_ID);
 
 	info('grid painted with %o', {
 		columns,
@@ -75,7 +75,7 @@ const Grids = () => {
 	);
 
 	return (
-		<Wrapper active={state.gridOn} data-addon-id={ADDON_ID}>
+		<Wrapper active={state?.gridOn} data-addon-id={ADDON_ID}>
 			<Grid
 				columns={columns}
 				gap={gap}
@@ -91,7 +91,9 @@ const Grids = () => {
 const styleCache = new WeakMap();
 
 export const GridsContainer = () => {
-	const previewIframe = document.querySelector('#storybook-preview-iframe');
+	const previewIframe: HTMLIFrameElement = document.querySelector(
+		'#storybook-preview-iframe',
+	);
 	if (!previewIframe) return null;
 
 	const iframeDocument = previewIframe.contentWindow.document;

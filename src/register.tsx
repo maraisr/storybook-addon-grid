@@ -1,5 +1,5 @@
-import * as React from 'react';
 import addons, { types } from '@storybook/addons';
+import * as React from 'react';
 import { HorizontalColumns } from './components/HorizontalColumns';
 import { ADDON_ID, PARAM_KEY } from './constants';
 

@@ -1,4 +1,5 @@
 import { useAddonState, useParameter, useStorybookApi } from '@storybook/api';
+import type { KeyCollection } from '@storybook/api/dist/modules/shortcuts';
 import {
 	eventToShortcut,
 	shortcutMatchesShortcut,
@@ -7,17 +8,16 @@ import {
 import { IconButton } from '@storybook/components';
 import { PREVIEW_KEYDOWN } from '@storybook/core-events';
 import { diary } from 'diary';
-import { document } from 'global';
-import { useCallback, useEffect } from 'react';
 import * as React from 'react';
+import { useCallback, useEffect } from 'react';
+import type { AddonParameters, AddonState } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
 import { Columns } from './Columns.svg';
-import type { AddonParameters, AddonState } from '../../index';
-import { Grids, GridsContainer } from './Grids';
+import { GridsContainer } from './Grids';
 
 const { debug, info } = diary(`${ADDON_ID}:HorizontalColumns`);
 
-const shortcut = ['control', 'G'] as const;
+const shortcut: KeyCollection = ['control', 'G'];
 debug('registered shortcut', shortcutToHumanString(shortcut));
 
 let gridOn: boolean = false;

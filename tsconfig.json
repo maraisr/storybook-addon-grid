@@ -1,6 +1,7 @@
 {
 	"extends": "@marais/tsconfig",
 	"compilerOptions": {
+		"jsx": "react",
 		"rootDir": "./",
 		"outDir": "dist",
 		"target": "ES2019",
@@ -8,6 +9,6 @@
 		"removeComments": false,
 		"lib": ["DOM", "ESNext"]
 	},
-	"files": ["src/preset.ts"],
+	"include": ["src/**/*.ts", "src/**/*.tsx"],
 	"exclude": ["node_modules"]
 }
