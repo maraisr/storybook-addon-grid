@@ -1,9 +1,9 @@
 /**
- * defines parameters for a grid system
+ * Defines parameters for the grid system
  */
 export interface GridParameters {
 	/**
-	 * number of columns, default 12
+	 * number of columns, default: 12
 	 */
 	columns?: number;
 	/**
