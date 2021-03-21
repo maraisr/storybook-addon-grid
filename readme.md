@@ -9,9 +9,6 @@
 		<a href="https://npm-stat.com/charts.html?package=storybook-addon-grid">
 			<img src="https://badgen.net/npm/dm/storybook-addon-grid" alt="downloads"/>
 		</a>
-		<a href="https://packagephobia.com/result?p=storybook-addon-grid">
-			<img src="https://packagephobia.com/badge?p=storybook-addon-grid" alt="size"/>
-		</a>
 	</span>
 </div>
 
