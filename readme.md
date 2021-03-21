@@ -41,6 +41,13 @@ via a keyboard shortcut <kbd>Ctrl</kbd> + <kbd>G</kbd>.
 
 ### _Parameters_
 
+Column Design system is defined by 3 values:
+- `number` of columns
+- the `gap` between them
+- the `gutter` - minimal margin between system and the screen
+- `maximal-width` for the system to limit maximum width of every column as well.
+
+
 #### `gridOn?: boolean = false`
 
 Defines if the grid should be turned on this story _by-default_. The grid is
@@ -52,11 +59,11 @@ is loaded.
 
 The number of columns to render.
 
-#### `gap?: string = '20px`
+#### `gap?: string = '20px'`
 
 The gap between `columns`.
 
-#### `gutter?: string = '50px`
+#### `gutter?: string = '50px'`
 
 The gap on the left and right side of the columns.
 
