@@ -1,7 +1,7 @@
 import createCache from '@emotion/cache';
 import type { Parameters, StoryContext } from '@storybook/addons';
 import { useAddonState, useParameter } from '@storybook/api';
-import { DecoratorFn } from '@storybook/react';
+import type { DecoratorFn } from '@storybook/react';
 import { CacheProvider, styled, Global } from '@storybook/theming';
 import { diary } from 'diary';
 import type { FunctionComponent } from 'react';
