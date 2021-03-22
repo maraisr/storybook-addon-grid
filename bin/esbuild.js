@@ -9,7 +9,7 @@ const options = {
 	treeShaking: true,
 	minifySyntax: true,
 	platform: 'browser',
-	minifyIdentifiers: true,
+	minifyIdentifiers: false,
 	logLevel: 'info', // summary
 };
 

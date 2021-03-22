@@ -53,3 +53,10 @@ export const ZIndexCheckFixed: Story = () => (
 		<ComponentTest />
 	</div>
 );
+
+export const DifferentGutters: Story = () => <ComponentTest />;
+DifferentGutters.parameters = {
+	grid: {
+		gutterLeft: '240px',
+	},
+};

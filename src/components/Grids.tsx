@@ -8,7 +8,7 @@ import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import type { AddonParameters, AddonState } from '../../index';
+import type { AddonParameters, AddonState, GridParameters } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
 
 const { info } = diary(`${ADDON_ID}:Grids`);
@@ -20,32 +20,29 @@ const Wrapper = styled.div<{ active: boolean }>(({ active }) => ({
 	transition: 'opacity 0.08s linear',
 }));
 
-const Grid = styled.div<{
-	columns: number;
-	gap: string;
-	gutter: string;
-	maxWidth: string;
-}>(({ columns, gap, gutter, maxWidth }) => ({
-	position: 'fixed',
-	top: '0',
-	bottom: '0',
-	left: '0',
-	right: '0',
+const Grid = styled.div<GridParameters>(
+	({ columns, gap, gutter, gutterLeft, gutterRight, maxWidth }) => ({
+		position: 'fixed',
+		top: '0',
+		bottom: '0',
+		left: '0',
+		right: '0',
 
-	display: 'grid',
-	gridTemplateColumns: `repeat(${columns}, 1fr)`,
-	gridColumnGap: gap,
+		display: 'grid',
+		gridTemplateColumns: `repeat(${columns}, 1fr)`,
+		gridColumnGap: gap,
 
-	width: '100%',
-	height: '100%',
+		width: '100%',
+		height: '100%',
 
-	margin: '0 auto',
-	maxWidth,
-	padding: `0 ${gutter}`,
+		margin: '0 auto',
+		maxWidth,
+		padding: `0 ${gutterRight ?? gutter} 0 ${gutterLeft ?? gutter}`,
 
-	boxSizing: 'border-box',
-	pointerEvents: 'none',
-}));
+		boxSizing: 'border-box',
+		pointerEvents: 'none',
+	}),
+);
 
 const Column = styled.div(() => ({
 	width: '100%',
@@ -57,14 +54,18 @@ const Column = styled.div(() => ({
 export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 	columns = 12,
 	gap = '20px',
-	gutter = '50px',
-	maxWidth = '1024px',
 	gridOn,
+	gutter = '50px',
+	gutterLeft,
+	gutterRight,
+	maxWidth = '1024px',
 }) => {
 	info('grid painted with %o', {
 		columns,
 		gap,
 		gutter,
+		gutterLeft,
+		gutterRight,
 		maxWidth,
 	});
 
@@ -90,8 +91,10 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 				<Grid
 					columns={columns}
 					gap={gap}
-					maxWidth={maxWidth}
 					gutter={gutter}
+					gutterLeft={gutterLeft}
+					gutterRight={gutterRight}
+					maxWidth={maxWidth}
 				>
 					{columnDivs}
 				</Grid>
@@ -101,19 +104,25 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 };
 
 const ManagerRenderedGrids = () => {
-	const { columns, gap, gutter, maxWidth } = useParameter<AddonParameters>(
-		PARAM_KEY,
-		{},
-	);
+	const {
+		columns,
+		gap,
+		gutter,
+		gutterLeft,
+		gutterRight,
+		maxWidth,
+	} = useParameter<AddonParameters>(PARAM_KEY, {});
 	const [state] = useAddonState<AddonState>(ADDON_ID);
 
 	return (
 		<Grids
-			gridOn={state?.gridOn}
-			gap={gap}
-			maxWidth={maxWidth}
-			gutter={gutter}
 			columns={columns}
+			gap={gap}
+			gridOn={state?.gridOn}
+			gutter={gutter}
+			gutterLeft={gutterLeft}
+			gutterRight={gutterRight}
+			maxWidth={maxWidth}
 		/>
 	);
 };
@@ -161,17 +170,27 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 		});
 
 	const {
-		grid: { columns, gap, gutter, maxWidth, gridOn } = {},
+		grid: {
+			columns,
+			gap,
+			gridOn,
+			gutter,
+			gutterLeft,
+			gutterRight,
+			maxWidth,
+		} = {},
 	} = context.parameters as Parameters & { grid: AddonParameters };
 
 	return (
 		<CacheProvider value={cacheRef.current}>
 			<Grids
-				gridOn={gridOn}
-				gap={gap}
-				maxWidth={maxWidth}
-				gutter={gutter}
 				columns={columns}
+				gap={gap}
+				gridOn={gridOn}
+				gutter={gutter}
+				gutterLeft={gutterLeft}
+				gutterRight={gutterRight}
+				maxWidth={maxWidth}
 			/>
 		</CacheProvider>
 	);

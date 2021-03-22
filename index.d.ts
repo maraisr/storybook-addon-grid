@@ -11,9 +11,19 @@ export interface GridParameters {
 	 */
 	gap?: string;
 	/**
-	 * system's gutter (margin)
+	 * system's gutter (margin) both left and right
 	 */
 	gutter?: string;
+
+	/**
+	 * When set, will override the left hand side {@link gutter}
+	 */
+	gutterLeft?: string;
+
+	/**
+	 * When set, will override the right hand side {@link gutter}
+	 */
+	gutterRight?: string;
 	/**
 	 * maximum allowed width
 	 */
