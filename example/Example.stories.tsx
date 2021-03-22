@@ -25,3 +25,11 @@ SixColumnGrid.parameters = {
 		columns: 6,
 	},
 };
+
+export const GapColumnsChanged: Story = () => <ComponentTest />;
+GapColumnsChanged.parameters = {
+	grid: {
+		columns: 4,
+		gap: '10px',
+	},
+};

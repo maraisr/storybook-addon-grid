@@ -22,7 +22,7 @@ debug('registered shortcut', shortcutToHumanString(shortcut));
 
 let gridOn: boolean = false;
 
-export const HorizontalColumns = () => {
+export const Tools = () => {
 	const parameters = useParameter<AddonParameters>(PARAM_KEY, {});
 	const [state, setState] = useAddonState<AddonState>(ADDON_ID, {
 		gridOn: parameters?.gridOn ?? gridOn,
