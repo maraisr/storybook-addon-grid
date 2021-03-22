@@ -56,6 +56,10 @@ as such you can define this globally or per story.
 The grid can be turned on either via clicking the Grid button in the toolbar, or
 via a keyboard shortcut <kbd>Ctrl</kbd> + <kbd>G</kbd>.
 
+> **Note:** Due to the nature of `z-index`, the root `div` of the stories will
+> have a `position: relative` and `z-index: 0` applied to it, allowing the
+> column guides to sit over the top.
+
 ### _Parameters_
 
 Column design system is defined by 3 values:

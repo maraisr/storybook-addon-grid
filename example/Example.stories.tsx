@@ -2,7 +2,15 @@ import type { Meta, Story } from '@storybook/react';
 import * as React from 'react';
 
 const ComponentTest = () => (
-	<h1>Hello World ~ {Math.ceil(Math.random() * 5)}</h1>
+	<div
+		style={{
+			borderRadius: '14px',
+			padding: '24px',
+			backgroundColor: 'aquamarine',
+		}}
+	>
+		Rendered at {new Date().toISOString()}
+	</div>
 );
 
 export default {
@@ -33,3 +41,15 @@ GapColumnsChanged.parameters = {
 		gap: '10px',
 	},
 };
+
+export const ZIndexCheckAbsolute: Story = () => (
+	<div style={{ position: 'absolute', zIndex: 99 }}>
+		<ComponentTest />
+	</div>
+);
+
+export const ZIndexCheckFixed: Story = () => (
+	<div style={{ position: 'fixed', zIndex: 99 }}>
+		<ComponentTest />
+	</div>
+);

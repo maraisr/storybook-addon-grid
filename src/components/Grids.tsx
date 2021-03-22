@@ -2,7 +2,7 @@ import createCache from '@emotion/cache';
 import type { Parameters, StoryContext } from '@storybook/addons';
 import { useAddonState, useParameter } from '@storybook/api';
 import { DecoratorFn } from '@storybook/react';
-import { CacheProvider, styled } from '@storybook/theming';
+import { CacheProvider, styled, Global } from '@storybook/theming';
 import { diary } from 'diary';
 import type { FunctionComponent } from 'react';
 import * as React from 'react';
@@ -14,9 +14,10 @@ import { ADDON_ID, PARAM_KEY } from '../constants';
 const { info } = diary(`${ADDON_ID}:Grids`);
 
 const Wrapper = styled.div<{ active: boolean }>(({ active }) => ({
+	position: 'relative',
+	zIndex: 1,
 	opacity: active ? '1' : '0',
 	transition: 'opacity 0.08s linear',
-	position: 'relative',
 }));
 
 const Grid = styled.div<{
@@ -76,16 +77,26 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 	);
 
 	return (
-		<Wrapper active={gridOn} data-addon-id={ADDON_ID}>
-			<Grid
-				columns={columns}
-				gap={gap}
-				maxWidth={maxWidth}
-				gutter={gutter}
-			>
-				{columnDivs}
-			</Grid>
-		</Wrapper>
+		<>
+			<Global
+				styles={{
+					[`#root`]: {
+						position: 'relative',
+						zIndex: 0,
+					},
+				}}
+			/>
+			<Wrapper active={gridOn} data-addon-id={ADDON_ID}>
+				<Grid
+					columns={columns}
+					gap={gap}
+					maxWidth={maxWidth}
+					gutter={gutter}
+				>
+					{columnDivs}
+				</Grid>
+			</Wrapper>
+		</>
 	);
 };
 
