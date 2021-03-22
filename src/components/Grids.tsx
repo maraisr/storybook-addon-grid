@@ -97,18 +97,22 @@ export const GridsContainer = () => {
 	if (!previewIframe) return null;
 
 	const iframeDocument = previewIframe.contentWindow.document;
+	if (!iframeDocument) return null;
 
-	if (!styleCache.has(previewIframe))
+	const head = iframeDocument.head;
+	if (!head) return null;
+
+	if (!styleCache.has(head))
 		styleCache.set(
-			previewIframe,
+			head,
 			createCache({
 				key: ADDON_ID,
-				container: iframeDocument.head,
+				container: head,
 			}),
 		);
 
 	return createPortal(
-		<CacheProvider value={styleCache.get(previewIframe)}>
+		<CacheProvider value={styleCache.get(head)}>
 			<Grids />
 		</CacheProvider>,
 		iframeDocument.body,
