@@ -20,10 +20,13 @@ export interface GridParameters {
 	maxWidth?: string;
 }
 
-export interface AddonParameters extends GridParameters {
-	gridOn?: boolean;
-}
-
-export interface AddonState {
+interface State {
+	/**
+	 * Should the grid be on by default here?
+	 */
 	gridOn: boolean;
 }
+
+export type AddonParameters = GridParameters & Partial<State>;
+
+export type AddonState = State;

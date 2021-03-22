@@ -13,9 +13,9 @@ import { useCallback, useEffect } from 'react';
 import type { AddonParameters, AddonState } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
 import { Columns } from './Columns.svg';
-import { GridsContainer } from './Grids';
+import { ManagerRenderedGridsContainer } from './Grids';
 
-const { debug, info } = diary(`${ADDON_ID}:HorizontalColumns`);
+const { debug, info } = diary(`${ADDON_ID}:Tool`);
 
 const shortcut: KeyCollection = ['control', 'G'];
 debug('registered shortcut', shortcutToHumanString(shortcut));
@@ -95,7 +95,7 @@ export const Tools = () => {
 			>
 				{Columns}
 			</IconButton>
-			<GridsContainer />
+			<ManagerRenderedGridsContainer />
 		</>
 	);
 };

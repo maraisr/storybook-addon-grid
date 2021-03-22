@@ -1,9 +1,12 @@
 import createCache from '@emotion/cache';
+import type { Parameters, StoryContext } from '@storybook/addons';
 import { useAddonState, useParameter } from '@storybook/api';
+import { DecoratorFn } from '@storybook/react';
 import { CacheProvider, styled } from '@storybook/theming';
 import { diary } from 'diary';
+import type { FunctionComponent } from 'react';
 import * as React from 'react';
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import type { AddonParameters, AddonState } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
@@ -50,15 +53,13 @@ const Column = styled.div(() => ({
 	backgroundColor: 'rgba(255, 0, 0, 0.1)',
 }));
 
-const Grids = () => {
-	const {
-		columns = 12,
-		gap = '20px',
-		gutter = '50px',
-		maxWidth = '1024px',
-	} = useParameter<AddonParameters>(PARAM_KEY, {});
-	const [state] = useAddonState<AddonState>(ADDON_ID);
-
+export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
+	columns = 12,
+	gap = '20px',
+	gutter = '50px',
+	maxWidth = '1024px',
+	gridOn,
+}) => {
 	info('grid painted with %o', {
 		columns,
 		gap,
@@ -75,7 +76,7 @@ const Grids = () => {
 	);
 
 	return (
-		<Wrapper active={state?.gridOn} data-addon-id={ADDON_ID}>
+		<Wrapper active={gridOn} data-addon-id={ADDON_ID}>
 			<Grid
 				columns={columns}
 				gap={gap}
@@ -88,9 +89,29 @@ const Grids = () => {
 	);
 };
 
+const ManagerRenderedGrids = () => {
+	const {
+		columns = 12,
+		gap = '20px',
+		gutter = '50px',
+		maxWidth = '1024px',
+	} = useParameter<AddonParameters>(PARAM_KEY, {});
+	const [state] = useAddonState<AddonState>(ADDON_ID);
+
+	return (
+		<Grids
+			gridOn={state?.gridOn}
+			gap={gap}
+			maxWidth={maxWidth}
+			gutter={gutter}
+			columns={columns}
+		/>
+	);
+};
+
 const styleCache = new WeakMap();
 
-export const GridsContainer = () => {
+export const ManagerRenderedGridsContainer = () => {
 	const previewIframe: HTMLIFrameElement = document.querySelector(
 		'#storybook-preview-iframe',
 	);
@@ -113,8 +134,45 @@ export const GridsContainer = () => {
 
 	return createPortal(
 		<CacheProvider value={styleCache.get(head)}>
-			<Grids />
+			<ManagerRenderedGrids />
 		</CacheProvider>,
 		iframeDocument.body,
+	);
+};
+
+const PreviewRenderedGridsContainer: FunctionComponent<{
+	context: StoryContext;
+}> = ({ context }) => {
+	const cacheRef = useRef(null);
+
+	if (cacheRef.current === null)
+		cacheRef.current = createCache({
+			key: ADDON_ID,
+			container: document.head,
+		});
+
+	const {
+		grid: { columns, gap, gutter, maxWidth, gridOn } = {},
+	} = context.parameters as Parameters & { grid: AddonParameters };
+
+	return (
+		<CacheProvider value={cacheRef.current}>
+			<Grids
+				gridOn={gridOn}
+				gap={gap}
+				maxWidth={maxWidth}
+				gutter={gutter}
+				columns={columns}
+			/>
+		</CacheProvider>
+	);
+};
+
+export const withGrid: DecoratorFn = (StoryFn, context) => {
+	return (
+		<>
+			{StoryFn()}
+			<PreviewRenderedGridsContainer context={context} />
+		</>
 	);
 };

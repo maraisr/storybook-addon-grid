@@ -24,11 +24,16 @@ async function bundle(input, output) {
 }
 
 bundle('src/preset.ts', pkg.exports['./preset']);
+bundle('src/chromatic.ts', pkg.exports['./chromatic']);
 bundle('src/register.tsx', {
 	require: './dist/register.js',
 	import: './dist/register.mjs',
 });
-bundle('src/config.ts', {
-	require: './dist/config.js',
-	import: './dist/config.mjs',
+bundle('src/config/index.ts', {
+	require: './dist/config/index.js',
+	import: './dist/config/index.mjs',
+});
+bundle('src/config/chromatic.ts', {
+	require: './dist/config/chromatic.js',
+	import: './dist/config/chromatic.mjs',
 });
