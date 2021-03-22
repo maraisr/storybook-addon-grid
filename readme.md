@@ -29,6 +29,24 @@ module.exports = {
 };
 ```
 
+> <details>
+> <summary>Chromatic users</summary>
+>
+> Include this additional preset to configure the grid lines for your Chromatic
+> screenshots.
+>
+> ```js
+> // .storybook/main.js
+> module.exports = {
+>   addons: [
+>     require.resolve('storybook-addon-grid/preset'),
+>     require.resolve('storybook-addon-grid/chromatic'),
+>   ],
+> };
+> ```
+>
+> </details>
+
 ## 🚀 Usage
 
 The grid is controlled with

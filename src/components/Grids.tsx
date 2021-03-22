@@ -90,12 +90,10 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 };
 
 const ManagerRenderedGrids = () => {
-	const {
-		columns = 12,
-		gap = '20px',
-		gutter = '50px',
-		maxWidth = '1024px',
-	} = useParameter<AddonParameters>(PARAM_KEY, {});
+	const { columns, gap, gutter, maxWidth } = useParameter<AddonParameters>(
+		PARAM_KEY,
+		{},
+	);
 	const [state] = useAddonState<AddonState>(ADDON_ID);
 
 	return (
