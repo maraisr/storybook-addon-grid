@@ -3,31 +3,37 @@
  */
 export interface GridParameters {
 	/**
-	 * number of columns, default: 12
+	 * Number of columns, default: 12
 	 */
 	columns?: number;
 	/**
-	 * gap between columns
+	 * Gap between columns
 	 */
 	gap?: string;
 	/**
-	 * system's gutter (margin) both left and right
+	 * System's gutter (margin) for both left and right
 	 */
 	gutter?: string;
 
 	/**
-	 * When set, will override the left hand side {@link gutter}
+	 * Define to override the {@link gutter} defined on the left-hand-side
 	 */
 	gutterLeft?: string;
 
 	/**
-	 * When set, will override the right hand side {@link gutter}
+	 * Define to override the {@link gutter} defined on the right-hand-side
 	 */
 	gutterRight?: string;
+
 	/**
 	 * maximum allowed width
 	 */
 	maxWidth?: string;
+
+	/**
+	 * Enable or Disable grid fade-in and fade-out when toggling the state
+	 */
+	animation?: boolean;
 }
 
 interface State {

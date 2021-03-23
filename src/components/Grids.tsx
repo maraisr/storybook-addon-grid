@@ -27,13 +27,17 @@ const fadeOut = keyframes`
 `;
 
 const Wrapper = memo(
-	styled.div<{ active: boolean }>(({ active }) => ({
-		position: 'relative',
-		zIndex: 1,
-		animation: `${
-			active ? fadeIn : fadeOut
-		} ${ANIMATION_DURATION}ms ease 1 normal forwards`,
-	})),
+	styled.div<{ active: boolean; animation: boolean }>(
+		({ active, animation }) => ({
+			position: 'relative',
+			zIndex: 1,
+			animation: animation
+				? `${
+						active ? fadeIn : fadeOut
+				  } ${ANIMATION_DURATION}ms ease 1 normal forwards`
+				: undefined,
+		}),
+	),
 );
 
 const Grid = memo(
@@ -70,6 +74,7 @@ const Column = styled.div(() => ({
 }));
 
 export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
+	animation = true,
 	columns = 12,
 	gap = '20px',
 	gridOn,
@@ -79,6 +84,7 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 	maxWidth = '1024px',
 }) => {
 	info('grid painted with %o', {
+		animation,
 		columns,
 		gap,
 		gutter,
@@ -95,6 +101,20 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 		[columns],
 	);
 
+	const grids = (
+		<Grid
+			animation={animation}
+			columns={columns}
+			gap={gap}
+			gutter={gutter}
+			gutterLeft={gutterLeft}
+			gutterRight={gutterRight}
+			maxWidth={maxWidth}
+		>
+			{columnDivs}
+		</Grid>
+	);
+
 	return (
 		<>
 			<Global
@@ -105,33 +125,35 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 					},
 				}}
 			/>
-			<ContinuousContainer<boolean>
-				value={gridOn}
-				timeout={ANIMATION_DURATION}
-			>
-				{(past, present, future) =>
-					past || present || future ? (
-						<Wrapper active={present} data-addon-id={ADDON_ID}>
-							<Grid
-								columns={columns}
-								gap={gap}
-								gutter={gutter}
-								gutterLeft={gutterLeft}
-								gutterRight={gutterRight}
-								maxWidth={maxWidth}
+			{animation ? (
+				<ContinuousContainer<boolean>
+					value={gridOn}
+					timeout={ANIMATION_DURATION}
+				>
+					{(past, present, future) =>
+						past || present || future ? (
+							<Wrapper
+								active={present}
+								data-addon-id={ADDON_ID}
+								animation={animation}
 							>
-								{columnDivs}
-							</Grid>
-						</Wrapper>
-					) : null
-				}
-			</ContinuousContainer>
+								{grids}
+							</Wrapper>
+						) : null
+					}
+				</ContinuousContainer>
+			) : gridOn ? (
+				<Wrapper active data-addon-id={ADDON_ID} animation={animation}>
+					{grids}
+				</Wrapper>
+			) : null}
 		</>
 	);
 };
 
 const ManagerRenderedGrids = () => {
 	const {
+		animation,
 		columns,
 		gap,
 		gutter,
@@ -143,6 +165,7 @@ const ManagerRenderedGrids = () => {
 
 	return (
 		<Grids
+			animation={animation}
 			columns={columns}
 			gap={gap}
 			gridOn={state?.gridOn}
@@ -198,6 +221,7 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 
 	const {
 		grid: {
+			animation,
 			columns,
 			gap,
 			gridOn,
@@ -211,6 +235,7 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 	return (
 		<CacheProvider value={cacheRef.current}>
 			<Grids
+				animation={animation}
 				columns={columns}
 				gap={gap}
 				gridOn={gridOn}

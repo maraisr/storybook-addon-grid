@@ -78,7 +78,7 @@ is loaded.
 
 #### `columns?: number = 12`
 
-The number of columns to render.
+The number of columns guides.
 
 #### `gap?: string = '20px'`
 
@@ -86,11 +86,25 @@ The gap between `columns`.
 
 #### `gutter?: string = '50px'`
 
-The gap on the left and right side of the columns.
+System's gutter (`margin`) for both left and right.
+
+#### `gutterLeft?: string`
+
+Define to override the gutter defined on the left-hand-side.
+
+#### `gutterRight?: string`
+
+Define to override the gutter defined on the right-hand-side.
 
 #### `maxWidth?: string = '1024px'`
 
 The maximum width our columns should grow.
+
+#### `animation?: bollean = true`
+
+Enable or Disable grid fade-in and fade-out when toggling the state.
+
+> Chromatic users, this will be `false` by default.
 
 ##### _Global Parameters~_
 

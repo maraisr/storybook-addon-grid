@@ -60,3 +60,10 @@ DifferentGutters.parameters = {
 		gutterLeft: '240px',
 	},
 };
+
+export const NoAnimation: Story = () => <ComponentTest />;
+NoAnimation.parameters = {
+	grid: {
+		animation: false,
+	},
+};
