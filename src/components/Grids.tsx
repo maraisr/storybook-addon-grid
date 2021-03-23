@@ -2,7 +2,7 @@ import createCache from '@emotion/cache';
 import type { Parameters, StoryContext } from '@storybook/addons';
 import { useAddonState, useParameter } from '@storybook/api';
 import type { DecoratorFn } from '@storybook/react';
-import { CacheProvider, Global, styled, keyframes } from '@storybook/theming';
+import { CacheProvider, Global, keyframes, styled } from '@storybook/theming';
 import { ContinuousContainer } from '@theuiteam/continuous-container';
 import { diary } from 'diary';
 import type { FunctionComponent } from 'react';
