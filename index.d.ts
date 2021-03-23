@@ -34,6 +34,11 @@ export interface GridParameters {
 	 * Enable or Disable the guides from fading in or out when toggling the state
 	 */
 	animation?: boolean;
+
+	/**
+	 * Sets the colour used for the column guides, defaults to red (rgba(255, 0, 0, 0.1))
+	 */
+	guidesColour?: string;
 }
 
 interface State {

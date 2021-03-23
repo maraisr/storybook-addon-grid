@@ -41,7 +41,7 @@ const Wrapper = memo(
 );
 
 const Grid = memo(
-	styled.div<GridParameters>(
+	styled.div<Exclude<GridParameters, 'guidesColour' | 'animation'>>(
 		({ columns, gap, gutter, gutterLeft, gutterRight, maxWidth }) => ({
 			position: 'fixed',
 			top: '0',
@@ -66,11 +66,11 @@ const Grid = memo(
 	),
 );
 
-const Column = styled.div(() => ({
+const Column = styled.div<{ colour: string }>(({ colour }) => ({
 	width: '100%',
 	height: '100%',
 
-	backgroundColor: 'rgba(255, 0, 0, 0.1)',
+	backgroundColor: colour,
 }));
 
 export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
@@ -78,6 +78,7 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 	columns = 12,
 	gap = '20px',
 	gridOn,
+	guidesColour = 'rgba(255, 0, 0, 0.1)',
 	gutter = '50px',
 	gutterLeft,
 	gutterRight,
@@ -87,6 +88,7 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 		animation,
 		columns,
 		gap,
+		guidesColour,
 		gutter,
 		gutterLeft,
 		gutterRight,
@@ -96,9 +98,9 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 	const columnDivs = useMemo(
 		() =>
 			Array.from({ length: columns }).map((_, index) => (
-				<Column key={index} />
+				<Column key={index} colour={guidesColour} />
 			)),
-		[columns],
+		[columns, guidesColour],
 	);
 
 	const grids = (
@@ -156,6 +158,7 @@ const ManagerRenderedGrids = () => {
 		animation,
 		columns,
 		gap,
+		guidesColour,
 		gutter,
 		gutterLeft,
 		gutterRight,
@@ -167,6 +170,7 @@ const ManagerRenderedGrids = () => {
 		<Grids
 			animation={animation}
 			columns={columns}
+			guidesColour={guidesColour}
 			gap={gap}
 			gridOn={state?.gridOn}
 			gutter={gutter}
@@ -225,6 +229,7 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 			columns,
 			gap,
 			gridOn,
+			guidesColour,
 			gutter,
 			gutterLeft,
 			gutterRight,
@@ -239,6 +244,7 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 				columns={columns}
 				gap={gap}
 				gridOn={gridOn}
+				guidesColour={guidesColour}
 				gutter={gutter}
 				gutterLeft={gutterLeft}
 				gutterRight={gutterRight}
