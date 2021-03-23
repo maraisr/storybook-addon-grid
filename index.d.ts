@@ -1,5 +1,5 @@
 /**
- * Defines parameters for the grid system
+ * Defines parameters for the column guides
  */
 export interface GridParameters {
 	/**
@@ -31,14 +31,14 @@ export interface GridParameters {
 	maxWidth?: string;
 
 	/**
-	 * Enable or Disable grid fade-in and fade-out when toggling the state
+	 * Enable or Disable the guides from fading in or out when toggling the state
 	 */
 	animation?: boolean;
 }
 
 interface State {
 	/**
-	 * Should the grid be on by default here?
+	 * Should the column guides be on by default here?
 	 */
 	gridOn: boolean;
 }

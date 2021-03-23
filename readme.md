@@ -32,8 +32,8 @@ module.exports = {
 > <details>
 > <summary>Chromatic users</summary>
 >
-> Include this additional preset to configure the grid lines for your Chromatic
-> screenshots.
+> Include this additional preset to configure the column guides for your
+> Chromatic screenshots.
 >
 > ```js
 > // .storybook/main.js
@@ -49,11 +49,11 @@ module.exports = {
 
 ## 🚀 Usage
 
-The grid is controlled with
+The column guides are controlled with
 [parameters](https://storybook.js.org/docs/react/writing-stories/parameters) and
 as such you can define this globally or per story.
 
-The grid can be turned on either via clicking the Grid button in the toolbar, or
+The column guides can be turned on either via clicking the toolbar button, or
 via a keyboard shortcut <kbd>Ctrl</kbd> + <kbd>G</kbd>.
 
 > **Note:** Due to the nature of `z-index`, the root `div` of the stories will
@@ -71,10 +71,10 @@ Column design system is defined by 3 values:
 
 #### `gridOn?: boolean = false`
 
-Defines if the grid should be turned on this story _by-default_. The grid is
-controlled with a toolbar item, keyboard shortcut which may cause this to not
-_always_ be on. This will _force_ it to either be `on` or `off` when the story
-is loaded.
+Defines if the column guides should be turned on this story _by-default_. The
+guides are controlled with a toolbar item, keyboard shortcut which may cause
+this to not _always_ be on. This will _force_ it to either be `on` or `off` when
+the story is loaded.
 
 #### `columns?: number = 12`
 
@@ -102,7 +102,7 @@ The maximum width our columns should grow.
 
 #### `animation?: bollean = true`
 
-Enable or Disable grid fade-in and fade-out when toggling the state.
+Enable or Disable the guides from fading in or out when toggling the state.
 
 > Chromatic users, this will be `false` by default.
 
