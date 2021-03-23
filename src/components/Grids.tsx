@@ -2,46 +2,64 @@ import createCache from '@emotion/cache';
 import type { Parameters, StoryContext } from '@storybook/addons';
 import { useAddonState, useParameter } from '@storybook/api';
 import type { DecoratorFn } from '@storybook/react';
-import { CacheProvider, styled, Global } from '@storybook/theming';
+import { CacheProvider, Global, styled, keyframes } from '@storybook/theming';
+import { ContinuousContainer } from '@theuiteam/continuous-container';
 import { diary } from 'diary';
 import type { FunctionComponent } from 'react';
 import * as React from 'react';
-import { useMemo, useRef } from 'react';
+import { memo, useMemo, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import type { AddonParameters, AddonState, GridParameters } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
 
 const { info } = diary(`${ADDON_ID}:Grids`);
 
-const Wrapper = styled.div<{ active: boolean }>(({ active }) => ({
-	position: 'relative',
-	zIndex: 1,
-	opacity: active ? '1' : '0',
-	transition: 'opacity 0.08s linear',
-}));
+const ANIMATION_DURATION = 130;
 
-const Grid = styled.div<GridParameters>(
-	({ columns, gap, gutter, gutterLeft, gutterRight, maxWidth }) => ({
-		position: 'fixed',
-		top: '0',
-		bottom: '0',
-		left: '0',
-		right: '0',
+const fadeIn = keyframes`
+ from { opacity: 0; }
+ to { opacity: 1; }
+`;
 
-		display: 'grid',
-		gridTemplateColumns: `repeat(${columns}, 1fr)`,
-		gridColumnGap: gap,
+const fadeOut = keyframes`
+ from { opacity: 1; }
+ to { opacity: 0; }
+`;
 
-		width: '100%',
-		height: '100%',
+const Wrapper = memo(
+	styled.div<{ active: boolean }>(({ active }) => ({
+		position: 'relative',
+		zIndex: 1,
+		animation: `${
+			active ? fadeIn : fadeOut
+		} ${ANIMATION_DURATION}ms ease 1 normal forwards`,
+	})),
+);
 
-		margin: '0 auto',
-		maxWidth,
-		padding: `0 ${gutterRight ?? gutter} 0 ${gutterLeft ?? gutter}`,
+const Grid = memo(
+	styled.div<GridParameters>(
+		({ columns, gap, gutter, gutterLeft, gutterRight, maxWidth }) => ({
+			position: 'fixed',
+			top: '0',
+			bottom: '0',
+			left: '0',
+			right: '0',
 
-		boxSizing: 'border-box',
-		pointerEvents: 'none',
-	}),
+			display: 'grid',
+			gridTemplateColumns: `repeat(${columns}, 1fr)`,
+			gridColumnGap: gap,
+
+			width: '100%',
+			height: '100%',
+
+			margin: '0 auto',
+			maxWidth,
+			padding: `0 ${gutterRight ?? gutter} 0 ${gutterLeft ?? gutter}`,
+
+			boxSizing: 'border-box',
+			pointerEvents: 'none',
+		}),
+	),
 );
 
 const Column = styled.div(() => ({
@@ -87,18 +105,27 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 					},
 				}}
 			/>
-			<Wrapper active={gridOn} data-addon-id={ADDON_ID}>
-				<Grid
-					columns={columns}
-					gap={gap}
-					gutter={gutter}
-					gutterLeft={gutterLeft}
-					gutterRight={gutterRight}
-					maxWidth={maxWidth}
-				>
-					{columnDivs}
-				</Grid>
-			</Wrapper>
+			<ContinuousContainer<boolean>
+				value={gridOn}
+				timeout={ANIMATION_DURATION}
+			>
+				{(past, present, future) =>
+					past || present || future ? (
+						<Wrapper active={present} data-addon-id={ADDON_ID}>
+							<Grid
+								columns={columns}
+								gap={gap}
+								gutter={gutter}
+								gutterLeft={gutterLeft}
+								gutterRight={gutterRight}
+								maxWidth={maxWidth}
+							>
+								{columnDivs}
+							</Grid>
+						</Wrapper>
+					) : null
+				}
+			</ContinuousContainer>
 		</>
 	);
 };

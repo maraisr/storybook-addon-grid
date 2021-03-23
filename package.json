@@ -71,6 +71,7 @@
 		"@storybook/components": "^6.1.21",
 		"@storybook/core-events": "^6.1.21",
 		"@storybook/theming": "^6.1.21",
+		"@theuiteam/continuous-container": "^1.0.0",
 		"deepmerge": "^4.2.2",
 		"diary": "^0.0.12"
 	},
