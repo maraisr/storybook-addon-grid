@@ -1,5 +1,4 @@
 import { useAddonState, useParameter, useStorybookApi } from '@storybook/api';
-import type { KeyCollection } from '@storybook/api/dist/modules/shortcuts';
 import {
 	eventToShortcut,
 	shortcutMatchesShortcut,
@@ -17,7 +16,7 @@ import { ManagerRenderedGridsContainer } from './Grids';
 
 const { debug, info } = diary(`${ADDON_ID}:Tool`);
 
-const shortcut: KeyCollection = ['control', 'G'];
+const shortcut = ['control', 'G'];
 debug('registered shortcut', shortcutToHumanString(shortcut));
 
 let gridOn: boolean = false;
