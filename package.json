@@ -85,7 +85,7 @@
 		"chromatic": "^5.7.0",
 		"concurrently": "^6.0.0",
 		"cross-env": "^7.0.3",
-		"esbuild": "^0.9.6",
+		"esbuild": "^0.11.12",
 		"nodemon": "^2.0.7",
 		"prettier": "^2.2.1",
 		"react": "^17.0.2",
@@ -118,7 +118,7 @@
 		]
 	},
 	"volta": {
-		"node": "15.12.0",
+		"node": "16.0.0",
 		"yarn": "1.22.10"
 	}
 }
