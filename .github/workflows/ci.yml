@@ -7,20 +7,16 @@ on:
 
 jobs:
     test:
+        name: Node.js v${{ matrix.nodejs }}
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                nodejs: [12, 14, 15, 16]
         steps:
             - uses: actions/checkout@main
-
-            - name: (env) setup
-              id: setup
-              run:
-                  echo "::set-output name=node_version::$(jq -r '.volta.node'
-                  package.json)"
-
             - uses: actions/setup-node@main
               with:
-                  node-version: ${{ steps.setup.outputs.node_version }}
-                  check-latest: true
+                  node-version: ${{ matrix.nodejs }}
 
             - name: (env) yarn global
               run: |-
@@ -32,11 +28,12 @@ jobs:
               with:
                   path: ${{ env.YARN_CACHE_DIR }}
                   key:
-                      ${{ runner.os }}-node${{ steps.setup.outputs.node_version
-                      }}-${{ hashFiles('./yarn.lock') }}
+                      ${{ runner.os }}-node${{ matrix.nodejs }}-${{
+                      hashFiles('./package.json', './yarn.lock') }}
 
             - name: Install
-              run: yarn --frozen-lockfile
+              run: |-
+                  yarn --frozen-lockfile;
 
             - name: Compile
               run: yarn build
