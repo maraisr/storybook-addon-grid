@@ -3,8 +3,8 @@
 	<p align="center"><code>yarn add storybook-addon-grid</code> makes column grids simple</p>
 	<hr />
 	<span>
-		<a href="https://github.com/maraisr/storybook-addon-grid/actions?query=workflow:CI+branch:main">
-			<img src="https://github.com/maraisr/storybook-addon-grid/workflows/CI/badge.svg?query=branch:main"/>
+		<a href="https://github.com/maraisr/storybook-addon-grid/actions/workflows/ci.yml">
+			<img src="https://github.com/maraisr/storybook-addon-grid/actions/workflows/ci.yml/badge.svg"/>
 		</a>
 		<a href="https://npm-stat.com/charts.html?package=storybook-addon-grid">
 			<img src="https://badgen.net/npm/dm/storybook-addon-grid" alt="downloads"/>
