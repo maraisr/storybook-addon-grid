@@ -6,8 +6,8 @@ const pkg = require('../package.json');
 const esbuild = require('./esbuild');
 
 const externals = [
-	...Object.keys(pkg.peerDependencies ?? {}),
-	...Object.keys(pkg.dependencies ?? {}),
+	...Object.keys(pkg.peerDependencies || {}),
+	...Object.keys(pkg.dependencies || {}),
 ];
 
 async function bundle(input, output) {
