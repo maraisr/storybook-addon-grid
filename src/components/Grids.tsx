@@ -41,7 +41,7 @@ const Wrapper = memo(
 );
 
 const Grid = memo(
-	styled.div<Exclude<GridParameters, 'guidesColour' | 'animation'>>(
+	styled.div<Exclude<GridParameters, 'guidesColor' | 'animation'>>(
 		({ columns, gap, gutter, gutterLeft, gutterRight, maxWidth }) => ({
 			position: 'fixed',
 			top: '0',
@@ -66,11 +66,11 @@ const Grid = memo(
 	),
 );
 
-const Column = styled.div<{ colour: string }>(({ colour }) => ({
+const Column = styled.div<{ color: string }>(({ color }) => ({
 	width: '100%',
 	height: '100%',
 
-	backgroundColor: colour,
+	backgroundColor: color,
 }));
 
 export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
@@ -78,7 +78,7 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 	columns = 12,
 	gap = '20px',
 	gridOn,
-	guidesColour = 'rgba(255, 0, 0, 0.1)',
+	guidesColor = 'rgba(255, 0, 0, 0.1)',
 	gutter = '50px',
 	gutterLeft,
 	gutterRight,
@@ -88,7 +88,7 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 		animation,
 		columns,
 		gap,
-		guidesColour,
+		guidesColor,
 		gutter,
 		gutterLeft,
 		gutterRight,
@@ -98,9 +98,9 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 	const columnDivs = useMemo(
 		() =>
 			Array.from({ length: columns }).map((_, index) => (
-				<Column key={index} colour={guidesColour} />
+				<Column key={index} color={guidesColor} />
 			)),
-		[columns, guidesColour],
+		[columns, guidesColor],
 	);
 
 	const grids = (
@@ -158,7 +158,7 @@ const ManagerRenderedGrids = () => {
 		animation,
 		columns,
 		gap,
-		guidesColour,
+		guidesColor,
 		gutter,
 		gutterLeft,
 		gutterRight,
@@ -170,7 +170,7 @@ const ManagerRenderedGrids = () => {
 		<Grids
 			animation={animation}
 			columns={columns}
-			guidesColour={guidesColour}
+			guidesColor={guidesColor}
 			gap={gap}
 			gridOn={state?.gridOn}
 			gutter={gutter}
@@ -229,7 +229,7 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 			columns,
 			gap,
 			gridOn,
-			guidesColour,
+			guidesColor,
 			gutter,
 			gutterLeft,
 			gutterRight,
@@ -244,7 +244,7 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 				columns={columns}
 				gap={gap}
 				gridOn={gridOn}
-				guidesColour={guidesColour}
+				guidesColor={guidesColor}
 				gutter={gutter}
 				gutterLeft={gutterLeft}
 				gutterRight={gutterRight}

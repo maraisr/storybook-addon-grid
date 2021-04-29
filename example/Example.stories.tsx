@@ -68,9 +68,9 @@ NoAnimation.parameters = {
 	},
 };
 
-export const DifferentColour: Story = () => <ComponentTest />;
-DifferentColour.parameters = {
+export const DifferentColor: Story = () => <ComponentTest />;
+DifferentColor.parameters = {
 	grid: {
-		guidesColour: 'rgba(255,255,0, 0.1)',
+		guidesColor: 'rgba(255,255,0, 0.1)',
 	},
 };

@@ -36,9 +36,9 @@ export interface GridParameters {
 	animation?: boolean;
 
 	/**
-	 * Sets the colour used for the column guides, defaults to red (rgba(255, 0, 0, 0.1))
+	 * Sets the color used for the column guides, defaults to red (rgba(255, 0, 0, 0.1))
 	 */
-	guidesColour?: string;
+	guidesColor?: string;
 }
 
 interface State {

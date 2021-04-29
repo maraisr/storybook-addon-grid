@@ -106,9 +106,9 @@ Enable or Disable the guides from fading in or out when toggling the state.
 
 > Chromatic users, this will be `false` by default.
 
-#### `guidesColour?: string = 'rgba(255, 0, 0, 0.1)'`
+#### `guidesColor?: string = 'rgba(255, 0, 0, 0.1)'`
 
-Sets the colour used for the column guides.
+Sets the color used for the column guides.
 
 ##### _Global Parameters~_
 
