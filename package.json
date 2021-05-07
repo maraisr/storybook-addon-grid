@@ -8,7 +8,7 @@
 		"columns",
 		"grids",
 		"guides",
-		"appearance"
+		"design"
 	],
 	"repository": "maraisr/storybook-addon-grid",
 	"license": "MIT",
