@@ -1,6 +1,6 @@
 <div align="center">
 	<h1><img src="./shots/logo.svg" alt="storybook-addon-grid"/></h1>
-	<p align="center"><code>yarn add storybook-addon-grid</code> makes column grids simple</p>
+	<p align="center"><code>npm install storybook-addon-grid</code> makes column grids simple</p>
 	<hr />
 	<span>
 		<a href="https://github.com/maraisr/storybook-addon-grid/actions/workflows/ci.yml">
@@ -19,7 +19,7 @@
 ## ⚙️ Install
 
 ```sh
-yarn add -D storybook-addon-grid
+npm install storybook-addon-grid
 ```
 
 ```js
@@ -32,16 +32,12 @@ module.exports = {
 > <details>
 > <summary>Chromatic users</summary>
 >
-> Include this additional preset to configure the column guides for your
-> Chromatic screenshots.
+> Include this additional preset to configure the column guides for your Chromatic screenshots.
 >
 > ```js
 > // .storybook/main.js
 > module.exports = {
->   addons: [
->     require.resolve('storybook-addon-grid/preset'),
->     require.resolve('storybook-addon-grid/chromatic'),
->   ],
+>   addons: [require.resolve('storybook-addon-grid/preset'), require.resolve('storybook-addon-grid/chromatic')],
 > };
 > ```
 >
@@ -49,16 +45,14 @@ module.exports = {
 
 ## 🚀 Usage
 
-The column guides are controlled with
-[parameters](https://storybook.js.org/docs/react/writing-stories/parameters) and
+The column guides are controlled with [parameters](https://storybook.js.org/docs/react/writing-stories/parameters) and
 as such you can define this globally or per story.
 
-The column guides can be turned on either via clicking the toolbar button, or
-via a keyboard shortcut <kbd>Ctrl</kbd> + <kbd>G</kbd>.
+The column guides can be turned on either via clicking the toolbar button, or via a keyboard shortcut <kbd>Ctrl</kbd> +
+<kbd>G</kbd>.
 
-> **Note:** Due to the nature of `z-index`, the root `div` of the stories will
-> have a `position: relative` and `z-index: 0` applied to it, allowing the
-> column guides to sit over the top.
+> **Note:** Due to the nature of `z-index`, the root `div` of the stories will have a `position: relative` and
+> `z-index: 0` applied to it, allowing the column guides to sit over the top.
 
 ### _Parameters_
 
@@ -71,10 +65,9 @@ Column design system is defined by 3 values:
 
 #### `gridOn?: boolean = false`
 
-Defines if the column guides should be turned on this story _by-default_. The
-guides are controlled with a toolbar item, keyboard shortcut which may cause
-this to not _always_ be on. This will _force_ it to either be `on` or `off` when
-the story is loaded.
+Defines if the column guides should be turned on this story _by-default_. The guides are controlled with a toolbar item,
+keyboard shortcut which may cause this to not _always_ be on. This will _force_ it to either be `on` or `off` when the
+story is loaded.
 
 #### `columns?: number = 12`
 
