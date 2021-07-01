@@ -42,16 +42,12 @@ const Wrapper = memo(
 
 const Grid = memo(
 	styled.div<Exclude<GridParameters, 'guidesColor' | 'animation'>>(
-		({ columns, gap, gutter, gutterLeft, gutterRight, maxWidth }) => ({
+		({ gutter, gutterLeft, gutterRight, maxWidth }) => ({
 			position: 'fixed',
 			top: '0',
 			bottom: '0',
 			left: '0',
 			right: '0',
-
-			display: 'grid',
-			gridTemplateColumns: `repeat(${columns}, 1fr)`,
-			gridColumnGap: gap,
 
 			width: '100%',
 			height: '100%',
@@ -66,12 +62,28 @@ const Grid = memo(
 	),
 );
 
-const Column = styled.div<{ color: string }>(({ color }) => ({
-	width: '100%',
-	height: '100%',
+const Column = styled.div<{ color: string, columns: number, gap: string }>(({ color, columns, gap }) => {
 
-	backgroundColor: color,
-}));
+	const grad = [];
+	let max = columns + columns -1,counter=max, size = Math.round(100/max);
+	while(counter--) {
+		const thisColor = counter % 2 === 0 ? color : 'transparent';
+		if (counter === 0 || counter === max-1) {
+			grad.push(`${thisColor} ${(counter||1) * size}%`);
+			continue;
+		}
+
+		const distance = size * counter;
+		grad.push(`${thisColor} ${distance}% ${distance + size}%`);
+	}
+
+	return ({
+		width: '100%',
+		height: '100%',
+
+		background: `linear-gradient(to right, ${grad.reverse().join(', ')})`,
+	});
+});
 
 export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 	animation = true,
@@ -95,25 +107,15 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 		maxWidth,
 	});
 
-	const columnDivs = useMemo(
-		() =>
-			Array.from({ length: columns }).map((_, index) => (
-				<Column key={index} color={guidesColor} />
-			)),
-		[columns, guidesColor],
-	);
-
 	const grids = (
 		<Grid
 			animation={animation}
-			columns={columns}
-			gap={gap}
 			gutter={gutter}
 			gutterLeft={gutterLeft}
 			gutterRight={gutterRight}
 			maxWidth={maxWidth}
 		>
-			{columnDivs}
+			<Column color={guidesColor} columns={columns} />
 		</Grid>
 	);
 
