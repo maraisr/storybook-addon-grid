@@ -55,7 +55,7 @@ export const Tools = () => {
 			setState(
 				(prev) => ({
 					...prev,
-					gridOn: parameters.gridOn,
+					gridOn: parameters.gridOn!,
 				}),
 				{
 					persistence: 'session',
@@ -67,20 +67,28 @@ export const Tools = () => {
 	useEffect(() => {
 		const handler = (event: KeyboardEvent) => {
 			if (focusInInput(event)) return;
-			if (shortcutMatchesShortcut(eventToShortcut(event), shortcut)) {
+			if (shortcutMatchesShortcut(eventToShortcut(event)!, shortcut)) {
+				console.log(
+					shortcutMatchesShortcut(eventToShortcut(event)!, shortcut),
+				);
 				event.preventDefault?.();
 				info('shortcut triggered', shortcutToHumanString(shortcut));
 				toggleGrid();
 			}
 		};
-		document.addEventListener('keydown', handler);
-		// KeyDown events from the preview iframe.
-		api.on(
-			PREVIEW_KEYDOWN,
-			(data: { event: KeyboardEvent }) => void handler(data.event),
-		);
 
-		// NOTE; Purposely not cleaning up, this component _shouldnt_ be un-mounting
+		const previewHandler = (data: { event: KeyboardEvent }) =>
+			void handler(data.event);
+
+		document.addEventListener('keydown', handler);
+
+		// KeyDown events from the preview iframe.
+		api.on(PREVIEW_KEYDOWN, previewHandler);
+
+		return () => {
+			document.removeEventListener('keydown', handler);
+			api.off(PREVIEW_KEYDOWN, previewHandler);
+		};
 	}, [api, toggleGrid]);
 
 	return (
@@ -102,6 +110,6 @@ export const Tools = () => {
 function focusInInput(event: any) {
 	return event.target
 		? /input|textarea/i.test(event.target.tagName) ||
-				event.target.getAttribute('contenteditable') !== null
+		event.target.getAttribute('contenteditable') !== null
 		: false;
 }

@@ -1,13 +1,14 @@
-import createCache from '@emotion/cache';
+import createCache, { type EmotionCache } from '@emotion/cache';
+import { CacheProvider } from '@emotion/core';
 import type { Parameters, StoryContext } from '@storybook/addons';
 import { useAddonState, useParameter } from '@storybook/api';
 import type { DecoratorFn } from '@storybook/react';
-import { CacheProvider, Global, keyframes, styled } from '@storybook/theming';
+import { Global, keyframes, styled } from '@storybook/theming';
 import { ContinuousContainer } from '@theuiteam/continuous-container';
 import { diary } from 'diary';
 import type { FunctionComponent } from 'react';
 import * as React from 'react';
-import { memo, useMemo, useRef } from 'react';
+import { memo, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import type { AddonParameters, AddonState, GridParameters } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
@@ -184,12 +185,12 @@ const ManagerRenderedGrids = () => {
 const styleCache = new WeakMap();
 
 export const ManagerRenderedGridsContainer = () => {
-	const previewIframe: HTMLIFrameElement = document.querySelector(
+	const previewIframe = document.querySelector<HTMLIFrameElement>(
 		'#storybook-preview-iframe',
 	);
 	if (!previewIframe) return null;
 
-	const iframeDocument = previewIframe.contentWindow.document;
+	const iframeDocument = previewIframe.contentWindow?.document;
 	if (!iframeDocument) return null;
 
 	const head = iframeDocument.head;
@@ -215,13 +216,14 @@ export const ManagerRenderedGridsContainer = () => {
 const PreviewRenderedGridsContainer: FunctionComponent<{
 	context: StoryContext;
 }> = ({ context }) => {
-	const cacheRef = useRef(null);
-
-	if (cacheRef.current === null)
-		cacheRef.current = createCache({
-			key: ADDON_ID,
-			container: document.head,
-		});
+	const emotionCache = useMemo<EmotionCache>(
+		() =>
+			createCache({
+				key: ADDON_ID,
+				container: document.head,
+			}),
+		[],
+	);
 
 	const {
 		grid: {
@@ -238,12 +240,12 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 	} = context.parameters as Parameters & { grid: AddonParameters };
 
 	return (
-		<CacheProvider value={cacheRef.current}>
+		<CacheProvider value={emotionCache}>
 			<Grids
 				animation={animation}
 				columns={columns}
 				gap={gap}
-				gridOn={gridOn}
+				gridOn={gridOn!}
 				guidesColor={guidesColor}
 				gutter={gutter}
 				gutterLeft={gutterLeft}
@@ -258,7 +260,7 @@ export const withGrid: DecoratorFn = (StoryFn, context) => {
 	return (
 		<>
 			{StoryFn()}
-			<PreviewRenderedGridsContainer context={context} />
+			<PreviewRenderedGridsContainer context={context as StoryContext} />
 		</>
 	);
 };
