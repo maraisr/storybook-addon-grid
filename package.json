@@ -1,6 +1,6 @@
 {
 	"name": "storybook-addon-grid",
-	"version": "0.0.13",
+	"version": "0.0.14",
 	"description": "Column guides for your stories",
 	"keywords": [
 		"storybook",
