@@ -6,7 +6,6 @@ import {
 } from '@storybook/api/shortcut';
 import { IconButton } from '@storybook/components';
 import { PREVIEW_KEYDOWN } from '@storybook/core-events';
-import { diary } from 'diary';
 import * as React from 'react';
 import { useCallback, useEffect } from 'react';
 import type { AddonParameters, AddonState } from '../../index';
@@ -14,10 +13,7 @@ import { ADDON_ID, PARAM_KEY } from '../constants';
 import { Columns } from './Columns.svg';
 import { ManagerRenderedGridsContainer } from './Grids';
 
-const { debug, info } = diary(`${ADDON_ID}:Tool`);
-
 const shortcut = ['control', 'G'];
-debug('registered shortcut', shortcutToHumanString(shortcut));
 
 let gridOn: boolean = false;
 
@@ -25,11 +21,6 @@ export const Tools = () => {
 	const parameters = useParameter<AddonParameters>(PARAM_KEY, {});
 	const [state, setState] = useAddonState<AddonState>(ADDON_ID, {
 		gridOn: parameters?.gridOn ?? gridOn,
-	});
-
-	info('rendering with grid %s', state.gridOn ? 'on' : 'off', {
-		state,
-		parameters,
 	});
 
 	const api = useStorybookApi();
@@ -72,7 +63,6 @@ export const Tools = () => {
 					shortcutMatchesShortcut(eventToShortcut(event)!, shortcut),
 				);
 				event.preventDefault?.();
-				info('shortcut triggered', shortcutToHumanString(shortcut));
 				toggleGrid();
 			}
 		};

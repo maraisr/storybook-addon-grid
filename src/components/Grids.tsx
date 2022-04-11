@@ -5,15 +5,12 @@ import { useAddonState, useParameter } from '@storybook/api';
 import type { DecoratorFn } from '@storybook/react';
 import { Global, keyframes, styled } from '@storybook/theming';
 import { ContinuousContainer } from '@theuiteam/continuous-container';
-import { diary } from 'diary';
 import type { FunctionComponent } from 'react';
 import * as React from 'react';
 import { memo, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import type { AddonParameters, AddonState, GridParameters } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
-
-const { info } = diary(`${ADDON_ID}:Grids`);
 
 const ANIMATION_DURATION = 130;
 
@@ -85,17 +82,6 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 	gutterRight,
 	maxWidth = '1024px',
 }) => {
-	info('grid painted with %o', {
-		animation,
-		columns,
-		gap,
-		guidesColor,
-		gutter,
-		gutterLeft,
-		gutterRight,
-		maxWidth,
-	});
-
 	const columnDivs = useMemo(
 		() =>
 			Array.from({ length: columns }).map((_, index) => (

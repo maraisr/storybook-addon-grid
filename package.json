@@ -77,8 +77,7 @@
 		"@storybook/components": "^6.4.19",
 		"@storybook/core-events": "^6.4.19",
 		"@storybook/theming": "^6.4.19",
-		"@theuiteam/continuous-container": "^1.0.0",
-		"diary": "^0.3.0"
+		"@theuiteam/continuous-container": "^1.0.0"
 	},
 	"devDependencies": {
 		"@marais/tsconfig": "^0.0.2",

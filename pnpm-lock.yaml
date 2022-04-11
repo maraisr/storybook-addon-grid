@@ -20,7 +20,6 @@ specifiers:
   chromatic: ^6.5.1
   concurrently: ^7.0.0
   cross-env: ^7.0.3
-  diary: ^0.3.0
   esbuild: ^0.14.23
   nodemon: ^2.0.15
   prettier: ^2.5.1
@@ -38,7 +37,6 @@ dependencies:
   '@storybook/core-events': 6.4.19
   '@storybook/theming': 6.4.19_react-dom@17.0.2+react@17.0.2
   '@theuiteam/continuous-container': 1.0.0_react@17.0.2
-  diary: 0.3.0
 
 devDependencies:
   '@marais/tsconfig': 0.0.2
@@ -4895,10 +4893,6 @@ packages:
       address: 1.1.2
       debug: 2.6.9
     dev: true
-
-  /diary/0.3.0:
-    resolution: {integrity: sha512-Z4HGQ6c7/g/nHlUUO6/PfH/ukOa79Lp2yWrAbN2qfWfCSwSh/30/VHR1InqV8UvvTfxgp9AjgQRTSYiNkyaVSg==}
-    dev: false
 
   /diffie-hellman/5.0.3:
     resolution: {integrity: sha512-kqag/Nl+f3GwyK25fhUMYj81BUOrZ9IuJsjIcDE5icNM9FJHAVm3VcUDxdLPoQtTuUylWm6ZIknYJwwaPxsUzg==}
