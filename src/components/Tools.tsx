@@ -100,6 +100,6 @@ export const Tools = () => {
 function focusInInput(event: any) {
 	return event.target
 		? /input|textarea/i.test(event.target.tagName) ||
-		event.target.getAttribute('contenteditable') !== null
+				event.target.getAttribute('contenteditable') !== null
 		: false;
 }

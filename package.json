@@ -47,28 +47,6 @@
 		"prepublishOnly": "pnpm run build",
 		"typecheck": "tsc --noEmit"
 	},
-	"prettier": {
-		"bracketSpacing": true,
-		"printWidth": 80,
-		"proseWrap": "always",
-		"singleQuote": true,
-		"tabWidth": 4,
-		"trailingComma": "all",
-		"useTabs": true,
-		"overrides": [
-			{
-				"files": [
-					"*.md",
-					"*.yml"
-				],
-				"options": {
-					"tabWidth": 2,
-					"printWidth": 120,
-					"useTabs": false
-				}
-			}
-		]
-	},
 	"dependencies": {
 		"@emotion/cache": "^10",
 		"@emotion/core": "^10",
