@@ -1,9 +1,13 @@
-import createCache, { type EmotionCache } from '@emotion/cache';
-import { CacheProvider } from '@emotion/core';
 import type { Parameters, StoryContext } from '@storybook/addons';
 import { useAddonState, useParameter } from '@storybook/api';
 import type { DecoratorFn } from '@storybook/react';
-import { Global, keyframes, styled } from '@storybook/theming';
+import {
+	Global,
+	keyframes,
+	styled,
+	createCache,
+	CacheProvider,
+} from '@storybook/theming';
 import { ContinuousContainer } from '@theuiteam/continuous-container';
 import type { FunctionComponent } from 'react';
 import * as React from 'react';
@@ -202,7 +206,7 @@ export const ManagerRenderedGridsContainer = () => {
 const PreviewRenderedGridsContainer: FunctionComponent<{
 	context: StoryContext;
 }> = ({ context }) => {
-	const emotionCache = useMemo<EmotionCache>(
+	const emotionCache = useMemo(
 		() =>
 			createCache({
 				key: ADDON_ID,

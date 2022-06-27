@@ -5,40 +5,40 @@ export interface GridParameters {
 	/**
 	 * Number of columns, default: 12
 	 */
-	columns?: number;
+	columns?: number | undefined;
 	/**
 	 * Gap between columns
 	 */
-	gap?: string;
+	gap?: string | undefined;
 	/**
 	 * System's gutter (margin) for both left and right
 	 */
-	gutter?: string;
+	gutter?: string | undefined;
 
 	/**
 	 * Define to override the {@link gutter} defined on the left-hand-side
 	 */
-	gutterLeft?: string;
+	gutterLeft?: string | undefined;
 
 	/**
 	 * Define to override the {@link gutter} defined on the right-hand-side
 	 */
-	gutterRight?: string;
+	gutterRight?: string | undefined;
 
 	/**
 	 * maximum allowed width
 	 */
-	maxWidth?: string;
+	maxWidth?: string | undefined;
 
 	/**
 	 * Enable or Disable the guides from fading in or out when toggling the state
 	 */
-	animation?: boolean;
+	animation?: boolean | undefined;
 
 	/**
 	 * Sets the color used for the column guides, defaults to red (rgba(255, 0, 0, 0.1))
 	 */
-	guidesColor?: string;
+	guidesColor?: string | undefined;
 }
 
 interface State {
