@@ -121,9 +121,9 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 			{animation ? (
 				<ContinuousContainer<boolean>
 					value={gridOn}
-					timeout={ANIMATION_DURATION}
+					exitTimeout={ANIMATION_DURATION}
 				>
-					{(past, present, future) =>
+					{({ past, present, future }) =>
 						past || present || future ? (
 							<Wrapper
 								active={present}
