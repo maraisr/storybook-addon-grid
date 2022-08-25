@@ -1,18 +1,28 @@
-<div align="center">
-	<h1><img src="./shots/logo.svg" alt="storybook-addon-grid"/></h1>
-	<p align="center"><code>npm install storybook-addon-grid</code> makes column grids simple</p>
-	<hr />
-	<span>
-		<a href="https://github.com/maraisr/storybook-addon-grid/actions/workflows/ci.yml">
-			<img src="https://github.com/maraisr/storybook-addon-grid/actions/workflows/ci.yml/badge.svg"/>
-		</a>
-		<a href="https://npm-stat.com/charts.html?package=storybook-addon-grid">
-			<img src="https://badgen.net/npm/dm/storybook-addon-grid" alt="downloads"/>
-		</a>
-	</span>
-</div>
+<div align="right">
+
+<samp>
+
+<h1><img src="./shots/logo.svg" alt="storybook-addon-grid"/></h1>
+
+</samp>
+
+`npm install storybook-addon-grid` keeps your stories in rhythm
+
+[![npm stats](https://badgen.net/npm/dm/storybook-addon-grid)](https://npm-stat.com/charts.html?package=storybook-addon-grid)
+[![bundle size](https://badgen.net/bundlephobia/minzip/meros)](https://bundlephobia.com/result?p=storybook-addon-grid)
 
 <br />
+
+<sup>
+
+This is free to use software, but if you do like it, consider supporting me ❤️
+
+[![sponsor me](https://badgen.net/badge/icon/sponsor?icon=github&label&color=gray)](https://github.com/sponsors/maraisr)
+[![buy me a coffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label&color=gray)](https://www.buymeacoffee.com/marais)
+
+</sup>
+
+</div>
 
 ![example that shows how the columns look when enabled](./shots/example.png)
 
@@ -93,7 +103,7 @@ Define to override the gutter defined on the right-hand-side.
 
 The maximum width our columns should grow.
 
-#### `animation?: bollean = true`
+#### `animation?: boolean = true`
 
 Enable or Disable the guides from fading in or out when toggling the state.
 
@@ -134,6 +144,10 @@ Example.parameters = {
 ## 📚 Further Readings
 
 - https://compassofdesign.com/articles/design-principle-1-guides-gutters-and-grids
+
+## ❤ Thanks
+
+Special thanks to [Marina](https://github.com/thearnica) for the initial implementation and design.
 
 ## License
 
