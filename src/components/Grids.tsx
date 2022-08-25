@@ -183,7 +183,7 @@ export const ManagerRenderedGridsContainer = () => {
 	if (!iframeDocument) return null;
 
 	const head = iframeDocument.head;
-	if (!head) return null;
+	if (!head || !iframeDocument.body) return null;
 
 	if (!styleCache.has(head))
 		styleCache.set(
