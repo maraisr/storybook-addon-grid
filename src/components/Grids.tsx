@@ -10,7 +10,6 @@ import {
 } from '@storybook/theming';
 import { ContinuousContainer } from '@theuiteam/continuous-container';
 import type { FunctionComponent } from 'react';
-import * as React from 'react';
 import { memo, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import type { AddonParameters, AddonState, GridParameters } from '../../index';

@@ -1,5 +1,4 @@
 import type { Meta, Story } from '@storybook/react';
-import * as React from 'react';
 
 const ComponentTest = () => (
 	<div

@@ -6,7 +6,6 @@ import {
 } from '@storybook/api/shortcut';
 import { IconButton } from '@storybook/components';
 import { PREVIEW_KEYDOWN } from '@storybook/core-events';
-import * as React from 'react';
 import { useCallback, useEffect } from 'react';
 import type { AddonParameters, AddonState } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
