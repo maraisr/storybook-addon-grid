@@ -42,28 +42,37 @@ const Wrapper = memo(
 );
 
 const Grid = memo(
-	styled.div<Exclude<GridParameters, 'guidesColor' | 'animation'>>(
-		({ columns, gap, gutter, gutterLeft, gutterRight, maxWidth }) => ({
-			position: 'fixed',
-			top: '0',
-			bottom: '0',
-			left: '0',
-			right: '0',
+	styled.div<Exclude<GridParameters, 'color' | 'animation'>>(
+		({ columns, gap, gutter, maxWidth }) => {
+			let gutterRight = '0',
+				gutterLeft = '0';
+			if (gutter && Array.isArray(gutter)) {
+				gutterLeft = gutter[0];
+				gutterRight = gutter[0];
+			}
 
-			display: 'grid',
-			gridTemplateColumns: `repeat(${columns}, 1fr)`,
-			gridColumnGap: gap,
+			return {
+				position: 'fixed',
+				top: '0',
+				bottom: '0',
+				left: '0',
+				right: '0',
 
-			width: '100%',
-			height: '100%',
+				display: 'grid',
+				gridTemplateColumns: `repeat(${columns}, 1fr)`,
+				gridColumnGap: gap,
 
-			margin: '0 auto',
-			maxWidth,
-			padding: `0 ${gutterRight ?? gutter} 0 ${gutterLeft ?? gutter}`,
+				width: '100%',
+				height: '100%',
 
-			boxSizing: 'border-box',
-			pointerEvents: 'none',
-		}),
+				margin: '0 auto',
+				maxWidth,
+				padding: `0 ${gutterRight} 0 ${gutterLeft}`,
+
+				boxSizing: 'border-box',
+				pointerEvents: 'none',
+			};
+		},
 	),
 );
 
@@ -79,18 +88,16 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 	columns = 12,
 	gap = '20px',
 	gridOn,
-	guidesColor = 'rgba(255, 0, 0, 0.1)',
+	color = 'rgba(255, 0, 0, 0.1)',
 	gutter = '50px',
-	gutterLeft,
-	gutterRight,
 	maxWidth = '1024px',
 }) => {
 	const columnDivs = useMemo(
 		() =>
 			Array.from({ length: columns }).map((_, index) => (
-				<Column key={index} color={guidesColor} />
+				<Column key={index} color={color} />
 			)),
-		[columns, guidesColor],
+		[columns, color],
 	);
 
 	const grids = (
@@ -99,8 +106,6 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 			columns={columns}
 			gap={gap}
 			gutter={gutter}
-			gutterLeft={gutterLeft}
-			gutterRight={gutterRight}
 			maxWidth={maxWidth}
 		>
 			{columnDivs}
@@ -144,28 +149,18 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 };
 
 const ManagerRenderedGrids = () => {
-	const {
-		animation,
-		columns,
-		gap,
-		guidesColor,
-		gutter,
-		gutterLeft,
-		gutterRight,
-		maxWidth,
-	} = useParameter<AddonParameters>(PARAM_KEY, {});
+	const { animation, columns, gap, color, gutter, maxWidth } =
+		useParameter<AddonParameters>(PARAM_KEY, {});
 	const [state] = useAddonState<AddonState>(ADDON_ID);
 
 	return (
 		<Grids
 			animation={animation}
 			columns={columns}
-			guidesColor={guidesColor}
+			color={color}
 			gap={gap}
 			gridOn={state?.gridOn}
 			gutter={gutter}
-			gutterLeft={gutterLeft}
-			gutterRight={gutterRight}
 			maxWidth={maxWidth}
 		/>
 	);
@@ -215,17 +210,7 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 	);
 
 	const {
-		grid: {
-			animation,
-			columns,
-			gap,
-			gridOn,
-			guidesColor,
-			gutter,
-			gutterLeft,
-			gutterRight,
-			maxWidth,
-		} = {},
+		grid: { animation, columns, gap, gridOn, color, gutter, maxWidth } = {},
 	} = context.parameters as Parameters & { grid: AddonParameters };
 
 	return (
@@ -235,10 +220,8 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 				columns={columns}
 				gap={gap}
 				gridOn={gridOn!}
-				guidesColor={guidesColor}
+				color={color}
 				gutter={gutter}
-				gutterLeft={gutterLeft}
-				gutterRight={gutterRight}
 				maxWidth={maxWidth}
 			/>
 		</CacheProvider>

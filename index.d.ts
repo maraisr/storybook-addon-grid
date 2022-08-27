@@ -11,19 +11,9 @@ export interface GridParameters {
 	 */
 	gap?: string | undefined;
 	/**
-	 * System's gutter (margin) for both left and right
+	 * Gutter (margin) on the left and/or right.
 	 */
-	gutter?: string | undefined;
-
-	/**
-	 * Define to override the {@link gutter} defined on the left-hand-side
-	 */
-	gutterLeft?: string | undefined;
-
-	/**
-	 * Define to override the {@link gutter} defined on the right-hand-side
-	 */
-	gutterRight?: string | undefined;
+	gutter?: string | [string, string] | undefined;
 
 	/**
 	 * maximum allowed width
@@ -38,7 +28,7 @@ export interface GridParameters {
 	/**
 	 * Sets the color used for the column guides, defaults to red (rgba(255, 0, 0, 0.1))
 	 */
-	guidesColor?: string | undefined;
+	color?: string | undefined;
 }
 
 interface State {

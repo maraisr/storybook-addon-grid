@@ -91,12 +91,6 @@ The gap between `columns`.
 
 System's gutter (`margin`) for both left and right.
 
-#### `gutterLeft?: string`
-
-Define to override the gutter defined on the left-hand-side.
-
-#### `gutterRight?: string`
-
 Define to override the gutter defined on the right-hand-side.
 
 #### `maxWidth?: string = '1024px'`
@@ -109,7 +103,7 @@ Enable or Disable the guides from fading in or out when toggling the state.
 
 > Chromatic users, this will be `false` by default.
 
-#### `guidesColor?: string = 'rgba(255, 0, 0, 0.1)'`
+#### `color?: string = 'rgba(255, 0, 0, 0.1)'`
 
 Sets the color used for the column guides.
 

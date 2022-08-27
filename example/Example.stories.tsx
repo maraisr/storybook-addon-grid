@@ -56,7 +56,7 @@ export const ZIndexCheckFixed: Story = () => (
 export const DifferentGutters: Story = () => <ComponentTest />;
 DifferentGutters.parameters = {
 	grid: {
-		gutterLeft: '240px',
+		gutter: ['240px'],
 	},
 };
 
@@ -70,6 +70,6 @@ NoAnimation.parameters = {
 export const DifferentColor: Story = () => <ComponentTest />;
 DifferentColor.parameters = {
 	grid: {
-		guidesColor: 'rgba(255,255,0, 0.1)',
+		color: 'rgba(0, 0, 255, 0.1)',
 	},
 };
