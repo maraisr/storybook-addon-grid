@@ -46,9 +46,11 @@ const Grid = memo(
 		({ columns, gap, gutter, maxWidth }) => {
 			let gutterRight = '0',
 				gutterLeft = '0';
-			if (gutter && Array.isArray(gutter)) {
+			if (Array.isArray(gutter)) {
 				gutterLeft = gutter[0];
 				gutterRight = gutter[0];
+			} else if (gutter != null) {
+				gutterLeft = gutterRight = gutter;
 			}
 
 			return {
