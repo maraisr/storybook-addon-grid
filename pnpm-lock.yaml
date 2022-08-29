@@ -19,6 +19,7 @@ specifiers:
   chromatic: 6.7.4
   concurrently: 7.3.0
   cross-env: 7.0.3
+  deepmerge: ^4.2.2
   esbuild: 0.15.5
   nodemon: 2.0.19
   prettier: 2.7.1
@@ -34,6 +35,7 @@ dependencies:
   '@storybook/core-events': 6.5.10
   '@storybook/theming': 6.5.10_biqbaboplfbrettd7655fr4n2y
   '@theuiteam/continuous-container': 2.0.1_ug65io7jkbhmo4fihdmbrh3ina
+  deepmerge: 4.2.2
 
 devDependencies:
   '@babel/core': 7.18.13
@@ -3979,7 +3981,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -4770,7 +4772,6 @@ packages:
   /deepmerge/4.2.2:
     resolution: {integrity: sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /default-browser-id/1.0.4:
     resolution: {integrity: sha512-qPy925qewwul9Hifs+3sx1ZYn14obHxpkX+mPD369w4Rzg+YkJBgi3SOvwUq81nWSjqGUegIgEPwD8u+HUnxlw==}
@@ -8586,6 +8587,17 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
+    dev: true
+
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
     dev: true
 
   /promise.allsettled/1.0.5:

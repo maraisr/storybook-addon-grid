@@ -34,6 +34,7 @@ export type GridParameters = {
 	 * Enable or Disable the guides from fading in or out when toggling the state
 	 */
 	animation?: boolean | undefined;
+	overrides?: Record<string, GridConfig> | undefined;
 } & GridConfig;
 
 export type AddonParameters = {

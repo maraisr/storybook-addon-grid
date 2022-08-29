@@ -53,7 +53,8 @@
 		"@storybook/components": "^6.5.10",
 		"@storybook/core-events": "^6.5.10",
 		"@storybook/theming": "^6.5.10",
-		"@theuiteam/continuous-container": "^2.0.1"
+		"@theuiteam/continuous-container": "^2.0.1",
+		"deepmerge": "^4.2.2"
 	},
 	"devDependencies": {
 		"@babel/core": "7.18.13",

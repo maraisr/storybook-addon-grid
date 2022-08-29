@@ -73,3 +73,18 @@ DifferentColor.parameters = {
 		color: 'rgba(0, 0, 255, 0.1)',
 	},
 };
+
+export const Responsive: Story = () => <ComponentTest />;
+Responsive.parameters = {
+	grid: {
+		overrides: {
+			'(max-width: 700px)': {
+				color: 'rgba(0, 255, 0, 0.1)',
+				columns: 2,
+			},
+			'(max-width: 1000px)': {
+				color: 'rgba(0, 0, 255, 0.1)',
+			},
+		},
+	},
+};
