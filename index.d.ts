@@ -1,7 +1,7 @@
 /**
- * Defines parameters for the column guides
+ * @internal
  */
-export interface GridParameters {
+export interface GridConfig {
 	/**
 	 * Number of columns, default: 12
 	 */
@@ -21,18 +21,23 @@ export interface GridParameters {
 	maxWidth?: string | undefined;
 
 	/**
-	 * Enable or Disable the guides from fading in or out when toggling the state
-	 */
-	animation?: boolean | undefined;
-
-	/**
 	 * Sets the color used for the column guides, defaults to red (rgba(255, 0, 0, 0.1))
 	 */
 	color?: string | undefined;
 }
 
+/**
+ * @internal
+ */
+export type GridParameters = {
+	/**
+	 * Enable or Disable the guides from fading in or out when toggling the state
+	 */
+	animation?: boolean | undefined;
+} & GridConfig;
+
 export type AddonParameters = {
-	disable?: boolean;
+	disable?: boolean | undefined;
 } & GridParameters;
 
 export type AddonState = {

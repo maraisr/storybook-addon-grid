@@ -7,7 +7,7 @@ import {
 import { IconButton } from '@storybook/components';
 import { PREVIEW_KEYDOWN, STORY_RENDERED } from '@storybook/core-events';
 import { useCallback, useEffect, useState } from 'react';
-import type { AddonParameters, AddonState } from '../../index';
+import type { AddonParameters, AddonState } from 'storybook-addon-grid';
 import { ADDON_ID, PARAM_KEY } from '../constants';
 import { ManagerRenderedGridsContainer } from './Grids';
 
