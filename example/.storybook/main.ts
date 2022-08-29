@@ -3,5 +3,5 @@ module.exports = {
 		builder: 'webpack5',
 	},
 	stories: ['../*.stories.*'],
-	addons: ['../..', '../../chromatic'],
+	addons: ['../..'],
 };
