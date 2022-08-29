@@ -31,13 +31,13 @@ export interface GridParameters {
 	color?: string | undefined;
 }
 
-interface State {
+export type AddonParameters = {
+	disable?: boolean,
+} & GridParameters;
+
+export type AddonState = {
 	/**
 	 * Should the column guides be on by default here?
 	 */
-	gridOn: boolean;
+	 visible: boolean;
 }
-
-export type AddonParameters = GridParameters & Partial<State>;
-
-export type AddonState = State;

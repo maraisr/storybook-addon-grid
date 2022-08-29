@@ -14,21 +14,19 @@ import { ManagerRenderedGridsContainer } from './Grids';
 
 const shortcut = ['control', 'G'];
 
-let gridOn: boolean = false;
-
 export const Tools = () => {
 	const parameters = useParameter<AddonParameters>(PARAM_KEY, {});
-	const [state, setState] = useAddonState<AddonState>(ADDON_ID, {
-		gridOn: parameters?.gridOn ?? gridOn,
-	});
+	const [state, setState] = useAddonState<AddonState>(ADDON_ID, { visible: false });
 
 	const api = useStorybookApi();
+
+	const isActive = typeof parameters.disable === 'boolean' ? !parameters.disable : state.visible;
 
 	const toggleGrid = useCallback(() => {
 		setState(
 			(prev) => ({
 				...prev,
-				gridOn: !prev.gridOn,
+				visible: !prev.visible
 			}),
 			{
 				persistence: 'session',
@@ -36,31 +34,11 @@ export const Tools = () => {
 		);
 	}, []);
 
-	// Sync params with addonState (params will prevail)
-	useEffect(() => {
-		if (
-			typeof parameters?.gridOn === 'boolean' &&
-			parameters.gridOn !== state.gridOn
-		)
-			setState(
-				(prev) => ({
-					...prev,
-					gridOn: parameters.gridOn!,
-				}),
-				{
-					persistence: 'session',
-				},
-			);
-	}, [parameters]);
-
 	// Keyboard events
 	useEffect(() => {
 		const handler = (event: KeyboardEvent) => {
 			if (focusInInput(event)) return;
 			if (shortcutMatchesShortcut(eventToShortcut(event)!, shortcut)) {
-				console.log(
-					shortcutMatchesShortcut(eventToShortcut(event)!, shortcut),
-				);
 				event.preventDefault?.();
 				toggleGrid();
 			}
@@ -86,7 +64,7 @@ export const Tools = () => {
 				title={`Turn on Column Grid [${shortcutToHumanString(
 					shortcut,
 				)}]`}
-				active={state.gridOn}
+				active={isActive}
 				onClick={toggleGrid}
 			>
 				{Columns}
@@ -99,6 +77,6 @@ export const Tools = () => {
 function focusInInput(event: any) {
 	return event.target
 		? /input|textarea/i.test(event.target.tagName) ||
-				event.target.getAttribute('contenteditable') !== null
+		event.target.getAttribute('contenteditable') !== null
 		: false;
 }

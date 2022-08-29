@@ -73,12 +73,6 @@ Column design system is defined by 3 values:
 - the `gutter` — minimal margin between the system and the screen
 - `maximal-width` for the system to limit maximum width of all columns as well.
 
-#### `gridOn?: boolean = false`
-
-Defines if the column guides should be turned on this story _by-default_. The guides are controlled with a toolbar item,
-keyboard shortcut which may cause this to not _always_ be on. This will _force_ it to either be `on` or `off` when the
-story is loaded.
-
 #### `columns?: number = 12`
 
 The number of columns guides.

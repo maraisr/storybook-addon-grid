@@ -19,11 +19,11 @@ export default {
 
 export const Default: Story = () => <ComponentTest />;
 
-export const GridOn: Story = () => <ComponentTest />;
-GridOn.parameters = {
+export const Disabled: Story = () => <ComponentTest />;
+Disabled.parameters = {
 	grid: {
-		gridOn: true,
-	},
+		disable: true
+	}
 };
 
 export const SixColumnGrid: Story = () => <ComponentTest />;

@@ -85,11 +85,11 @@ const Column = styled.div<{ color: string }>(({ color }) => ({
 	backgroundColor: color,
 }));
 
-export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
+export const Grids: FunctionComponent<GridParameters & AddonState> = ({
+	visible,
 	animation = true,
 	columns = 12,
 	gap = '20px',
-	gridOn,
 	color = 'rgba(255, 0, 0, 0.1)',
 	gutter = '50px',
 	maxWidth = '1024px',
@@ -126,7 +126,7 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 			/>
 			{animation ? (
 				<ContinuousContainer<boolean>
-					value={gridOn}
+					value={visible}
 					exitTimeout={ANIMATION_DURATION}
 				>
 					{({ past, present, future }) =>
@@ -141,7 +141,7 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 						) : null
 					}
 				</ContinuousContainer>
-			) : gridOn ? (
+			) : visible ? (
 				<Wrapper active data-addon-id={ADDON_ID} animation={animation}>
 					{grids}
 				</Wrapper>
@@ -151,7 +151,7 @@ export const Grids: FunctionComponent<AddonParameters & AddonState> = ({
 };
 
 const ManagerRenderedGrids = () => {
-	const { animation, columns, gap, color, gutter, maxWidth } =
+	const { animation, columns, gap, color, gutter, maxWidth, disable } =
 		useParameter<AddonParameters>(PARAM_KEY, {});
 	const [state] = useAddonState<AddonState>(ADDON_ID);
 
@@ -161,7 +161,7 @@ const ManagerRenderedGrids = () => {
 			columns={columns}
 			color={color}
 			gap={gap}
-			gridOn={state?.gridOn}
+			visible={disable != null ? !disable : (state?.visible ?? false)}
 			gutter={gutter}
 			maxWidth={maxWidth}
 		/>
@@ -212,16 +212,16 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 	);
 
 	const {
-		grid: { animation, columns, gap, gridOn, color, gutter, maxWidth } = {},
+		grid: { animation, columns, gap, color, gutter, maxWidth, disable } = {},
 	} = context.parameters as Parameters & { grid: AddonParameters };
 
 	return (
 		<CacheProvider value={emotionCache}>
 			<Grids
+				visible={disable != null ? !disable : true}
 				animation={animation}
 				columns={columns}
 				gap={gap}
-				gridOn={gridOn!}
 				color={color}
 				gutter={gutter}
 				maxWidth={maxWidth}
@@ -230,11 +230,9 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 	);
 };
 
-export const withGrid: DecoratorFn = (StoryFn, context) => {
-	return (
-		<>
-			{StoryFn()}
-			<PreviewRenderedGridsContainer context={context as StoryContext} />
-		</>
-	);
-};
+export const withGrid: DecoratorFn = (StoryFn, context) => (
+	<>
+		{StoryFn()}
+		<PreviewRenderedGridsContainer context={context as StoryContext} />
+	</>
+);
