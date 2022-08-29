@@ -25,9 +25,9 @@ async function bundle(input, output) {
 
 bundle('src/preset.ts', pkg.exports['./preset']);
 bundle('src/chromatic.ts', pkg.exports['./chromatic']);
-bundle('src/register.tsx', {
-	require: './dist/register.js',
-	import: './dist/register.mjs',
+bundle('src/manager.tsx', {
+	require: './dist/manager.js',
+	import: './dist/manager.mjs',
 });
 bundle('src/config/index.ts', {
 	require: './dist/config/index.js',

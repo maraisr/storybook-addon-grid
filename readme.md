@@ -35,7 +35,7 @@ npm install storybook-addon-grid
 ```js
 // .storybook/main.js
 module.exports = {
-  addons: [require.resolve('storybook-addon-grid/preset')],
+  addons: [require.resolve('storybook-addon-grid')],
 };
 ```
 
@@ -47,7 +47,7 @@ module.exports = {
 > ```js
 > // .storybook/main.js
 > module.exports = {
->   addons: [require.resolve('storybook-addon-grid/preset'), require.resolve('storybook-addon-grid/chromatic')],
+>   addons: [require.resolve('storybook-addon-grid'), require.resolve('storybook-addon-grid/chromatic')],
 > };
 > ```
 >

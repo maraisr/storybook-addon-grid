@@ -22,8 +22,8 @@ export const Default: Story = () => <ComponentTest />;
 export const Disabled: Story = () => <ComponentTest />;
 Disabled.parameters = {
 	grid: {
-		disable: true
-	}
+		disable: true,
+	},
 };
 
 export const SixColumnGrid: Story = () => <ComponentTest />;

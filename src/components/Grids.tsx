@@ -161,7 +161,7 @@ const ManagerRenderedGrids = () => {
 			columns={columns}
 			color={color}
 			gap={gap}
-			visible={disable != null ? !disable : (state?.visible ?? false)}
+			visible={disable != null ? !disable : state?.visible ?? false}
 			gutter={gutter}
 			maxWidth={maxWidth}
 		/>
@@ -212,7 +212,15 @@ const PreviewRenderedGridsContainer: FunctionComponent<{
 	);
 
 	const {
-		grid: { animation, columns, gap, color, gutter, maxWidth, disable } = {},
+		grid: {
+			animation,
+			columns,
+			gap,
+			color,
+			gutter,
+			maxWidth,
+			disable,
+		} = {},
 	} = context.parameters as Parameters & { grid: AddonParameters };
 
 	return (

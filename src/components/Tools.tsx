@@ -9,24 +9,28 @@ import { PREVIEW_KEYDOWN } from '@storybook/core-events';
 import { useCallback, useEffect } from 'react';
 import type { AddonParameters, AddonState } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
-import { Columns } from './Columns.svg';
 import { ManagerRenderedGridsContainer } from './Grids';
 
 const shortcut = ['control', 'G'];
 
 export const Tools = () => {
 	const parameters = useParameter<AddonParameters>(PARAM_KEY, {});
-	const [state, setState] = useAddonState<AddonState>(ADDON_ID, { visible: false });
+	const [state, setState] = useAddonState<AddonState>(ADDON_ID, {
+		visible: false,
+	});
 
 	const api = useStorybookApi();
 
-	const isActive = typeof parameters.disable === 'boolean' ? !parameters.disable : state.visible;
+	const isActive =
+		typeof parameters.disable === 'boolean'
+			? !parameters.disable
+			: state.visible;
 
 	const toggleGrid = useCallback(() => {
 		setState(
 			(prev) => ({
 				...prev,
-				visible: !prev.visible
+				visible: !prev.visible,
 			}),
 			{
 				persistence: 'session',
@@ -67,7 +71,19 @@ export const Tools = () => {
 				active={isActive}
 				onClick={toggleGrid}
 			>
-				{Columns}
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+				>
+					<path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"></path>
+				</svg>
 			</IconButton>
 			<ManagerRenderedGridsContainer />
 		</>
@@ -77,6 +93,6 @@ export const Tools = () => {
 function focusInInput(event: any) {
 	return event.target
 		? /input|textarea/i.test(event.target.tagName) ||
-		event.target.getAttribute('contenteditable') !== null
+				event.target.getAttribute('contenteditable') !== null
 		: false;
 }

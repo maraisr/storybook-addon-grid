@@ -3,5 +3,5 @@ export function config(entry: any[] = []) {
 }
 
 export function managerEntries(entry: any[] = []) {
-	return [...entry, require.resolve('./register')];
+	return [...entry, require.resolve('./manager')];
 }

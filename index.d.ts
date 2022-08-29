@@ -32,12 +32,12 @@ export interface GridParameters {
 }
 
 export type AddonParameters = {
-	disable?: boolean,
+	disable?: boolean;
 } & GridParameters;
 
 export type AddonState = {
 	/**
 	 * Should the column guides be on by default here?
 	 */
-	 visible: boolean;
-}
+	visible: boolean;
+};
