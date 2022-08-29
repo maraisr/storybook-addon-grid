@@ -5,7 +5,11 @@ export interface GridConfig {
 	/**
 	 * Number of columns, default: 12
 	 */
-	columns?: number | undefined;
+	columns?: number | string | undefined;
+	/**
+	 * Maximum number of columns, default: 24
+	 */
+	maxColumns?: number | undefined;
 	/**
 	 * Gap between columns
 	 */

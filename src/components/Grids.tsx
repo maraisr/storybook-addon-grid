@@ -8,7 +8,7 @@ import { ADDON_ID, PARAM_KEY } from '../constants';
 import { Grids } from './ui';
 
 const ManagerRenderedGrids = () => {
-	const { animation, columns, gap, color, gutter, maxWidth, disable } =
+	const { animation, columns, gap, color, gutter, maxWidth, disable, maxColumns } =
 		useParameter<AddonParameters>(PARAM_KEY, {});
 	const [state] = useAddonState<AddonState>(ADDON_ID);
 
@@ -21,6 +21,7 @@ const ManagerRenderedGrids = () => {
 			visible={disable != null ? !disable : state?.visible ?? false}
 			gutter={gutter}
 			maxWidth={maxWidth}
+			maxColumns={maxColumns}
 		/>
 	);
 };

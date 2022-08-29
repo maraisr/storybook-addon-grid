@@ -129,6 +129,30 @@ Example.parameters = {
 };
 ```
 
+## Responsive grid
+Storybook-addon-grid does not support responsive grid by itself, delegating this functionality to you.
+
+Why? Our intention is to match your application settings, not to replicate them.
+We hope you are using css media queries to control your grid system in the real application, and would like to _tap into_ them
+
+#### Addon configuration
+```tsx
+Example.parameters = {
+    grid: {
+        // instead of number - give us your custom variable names for
+        // number of columns
+        columns: 'var(--columns)',
+        // gutter
+        gutter: 'var(--gutter)',
+        // gap
+        gap: 'var(--gap)',
+    }
+}
+```
+Then - it's up to you to make those variables work. We would like to be in sync with your app and just work as a part of it.
+
+Example could be sound in our own storybook [ResponsiveGrid](./example/Example.stories.tsx).
+
 ## 📚 Further Readings
 
 - https://compassofdesign.com/articles/design-principle-1-guides-gutters-and-grids

@@ -36,13 +36,12 @@ const Wrapper = styled.div<{ active: boolean; animation: boolean }>(
 	}),
 );
 
-const Grid = styled.div<Exclude<GridConfig, 'color' | 'animation'>>(
-	({ columns, gap, gutter, maxWidth }) => {
+const Grid = styled.div<Exclude<GridConfig, 'color' | 'animation'> & {grid: string}>(
+	({ gap, gutter, maxWidth, grid }) => {
 		let gutterRight = '0',
 			gutterLeft = '0';
 		if (Array.isArray(gutter)) {
-			gutterLeft = gutter[0];
-			gutterRight = gutter[0];
+			([gutterLeft, gutterRight] = gutter)
 		} else if (gutter != null) {
 			gutterLeft = gutterRight = gutter;
 		}
@@ -55,7 +54,8 @@ const Grid = styled.div<Exclude<GridConfig, 'color' | 'animation'>>(
 			right: '0',
 
 			display: 'grid',
-			gridTemplateColumns: `repeat(${columns}, 1fr)`,
+			gridTemplateColumns: grid,
+			gridTemplateRows: '100%',
 			gridColumnGap: gap,
 
 			width: '100%',
@@ -88,17 +88,21 @@ export const Grids: FunctionComponent<
 	color = 'rgba(255, 0, 0, 0.1)',
 	gutter = '50px',
 	maxWidth = '1024px',
+	maxColumns = 24
 }) => {
+	const numberOfColumns = typeof(columns) ==='number' ? columns : maxColumns;
+	const grid = typeof(columns) ==='number' ? `repeat(${columns}, 1fr)` : `repeat(var(${columns.match(/var\((.*)\)/)![1]}), 1fr)`
+
 	const columnDivs = useMemo(
 		() =>
-			Array.from({ length: columns }).map((_, index) => (
+			Array.from({ length: numberOfColumns }).map((_, index) => (
 				<Column key={index} color={color} />
 			)),
-		[columns, color],
+		[numberOfColumns, color],
 	);
 
 	const gridNodes = (
-		<Grid columns={columns} gap={gap} gutter={gutter} maxWidth={maxWidth}>
+		<Grid grid={grid} gap={gap} gutter={gutter} maxWidth={maxWidth} >
 			{columnDivs}
 		</Grid>
 	);
