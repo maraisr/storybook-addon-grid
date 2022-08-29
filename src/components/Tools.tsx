@@ -5,8 +5,8 @@ import {
 	shortcutToHumanString,
 } from '@storybook/api/shortcut';
 import { IconButton } from '@storybook/components';
-import { PREVIEW_KEYDOWN } from '@storybook/core-events';
-import { useCallback, useEffect } from 'react';
+import { PREVIEW_KEYDOWN, STORY_RENDERED } from '@storybook/core-events';
+import { useCallback, useEffect, useState } from 'react';
 import type { AddonParameters, AddonState } from '../../index';
 import { ADDON_ID, PARAM_KEY } from '../constants';
 import { ManagerRenderedGridsContainer } from './Grids';
@@ -18,13 +18,8 @@ export const Tools = () => {
 	const [state, setState] = useAddonState<AddonState>(ADDON_ID, {
 		visible: false,
 	});
-
+	const [ready, setReady] = useState(false);
 	const api = useStorybookApi();
-
-	const isActive =
-		typeof parameters.disable === 'boolean'
-			? !parameters.disable
-			: state.visible;
 
 	const toggleGrid = useCallback(() => {
 		setState(
@@ -62,12 +57,22 @@ export const Tools = () => {
 		};
 	}, [api, toggleGrid]);
 
+	// Avoid some "getting ready" states
+	useEffect(() => {
+		api.once(STORY_RENDERED, () => void setReady(true));
+	}, []);
+
+	const disabled =
+		typeof parameters.disable === 'boolean' ? parameters.disable : false;
+	const isActive = disabled ? !disabled : state.visible;
+
 	return (
 		<>
 			<IconButton
 				title={`Turn on Column Grid [${shortcutToHumanString(
 					shortcut,
 				)}]`}
+				disabled={disabled}
 				active={isActive}
 				onClick={toggleGrid}
 			>
@@ -85,7 +90,7 @@ export const Tools = () => {
 					<path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"></path>
 				</svg>
 			</IconButton>
-			<ManagerRenderedGridsContainer />
+			{!disabled && ready ? <ManagerRenderedGridsContainer /> : null}
 		</>
 	);
 };
