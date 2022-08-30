@@ -5,6 +5,7 @@ import { ADDON_ID } from 'src/constants';
 import type { AddonState, GridConfig } from 'storybook-addon-grid';
 
 const ANIMATION_DURATION = 130;
+const MAX_COLUMNS = 24;
 
 const fadeIn = keyframes`
 	from {
@@ -36,26 +37,23 @@ const Wrapper = styled.div<{ active: boolean; animation: boolean }>(
 	}),
 );
 
-const Grid = styled.div<Exclude<GridConfig, 'color' | 'animation'>>(
-	({ columns, gap, gutter, maxWidth }) => {
+const Grid = styled.div<Omit<Required<GridConfig>, 'color' | 'animation'>>(
+	({ gap, gutter, maxWidth, columns }) => {
 		let gutterRight = '0',
 			gutterLeft = '0';
 		if (Array.isArray(gutter)) {
-			gutterLeft = gutter[0];
-			gutterRight = gutter[0];
+			[gutterLeft, gutterRight] = gutter;
 		} else if (gutter != null) {
 			gutterLeft = gutterRight = gutter;
 		}
 
 		return {
 			position: 'fixed',
-			top: '0',
-			bottom: '0',
-			left: '0',
-			right: '0',
+			inset: '0',
 
 			display: 'grid',
-			gridTemplateColumns: `repeat(${columns}, 1fr)`,
+			gridTemplateColumns: `repeat(min(${columns}, ${MAX_COLUMNS}), 1fr)`,
+			gridTemplateRows: '100%',
 			gridColumnGap: gap,
 
 			width: '100%',
@@ -91,14 +89,14 @@ export const Grids: FunctionComponent<
 }) => {
 	const columnDivs = useMemo(
 		() =>
-			Array.from({ length: columns }).map((_, index) => (
-				<Column key={index} color={color} />
-			)),
+			Array.from({
+				length: typeof columns === 'number' ? columns : MAX_COLUMNS,
+			}).map((_, index) => <Column key={index} color={color} />),
 		[columns, color],
 	);
 
 	const gridNodes = (
-		<Grid columns={columns} gap={gap} gutter={gutter} maxWidth={maxWidth}>
+		<Grid gap={gap} gutter={gutter} maxWidth={maxWidth} columns={columns}>
 			{columnDivs}
 		</Grid>
 	);

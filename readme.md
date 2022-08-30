@@ -129,6 +129,42 @@ Example.parameters = {
 };
 ```
 
+### Responsive properties
+
+The way `storybook-addon-grid` solves responsive properties is leaving this up to you. We don't you to build
+abstractions and implementations for this addon, we want to reuse existing patterns you may already be using.
+
+In fact all properties map through to css, so any css variable you expose is consumable.
+
+eg:
+
+```css
+// file: my-styles.css
+@media (min-width: 768px) {
+  :root {
+    --columns: 8;
+    --gap: 12px;
+    --gutter: 24px;
+    }
+  }
+}
+```
+
+```ts
+Story.parameters = {
+  grid: {
+    // a custom variable names for the number of columns
+    columns: 'var(--columns)',
+    // or the gutter
+    gutter: 'var(--gutter)',
+    // or the gap
+    gap: 'var(--gap)',
+  },
+};
+```
+
+You can see this in action over at our [example story `ResponsiveGrid`](./example/Example.stories.tsx).
+
 ## 📚 Further Readings
 
 - https://compassofdesign.com/articles/design-principle-1-guides-gutters-and-grids
