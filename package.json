@@ -97,8 +97,8 @@
 	"storybook": {
 		"displayName": "Column Guides",
 		"icon": "https://raw.githubusercontent.com/maraisr/storybook-addon-grid/main/shots/square_logo.png",
-		"supportedFrameworks": [
-			"React"
+		"unsupportedFrameworks": [
+			"react-native"
 		]
 	},
 	"volta": {
