@@ -3,13 +3,9 @@
  */
 export interface GridConfig {
 	/**
-	 * Number of columns, default: 12
+	 * Number of columns, default: 12 max: 24
 	 */
 	columns?: number | string | undefined;
-	/**
-	 * Maximum number of columns, default: 24
-	 */
-	maxColumns?: number | undefined;
 	/**
 	 * Gap between columns
 	 */
@@ -18,12 +14,10 @@ export interface GridConfig {
 	 * Gutter (margin) on the left and/or right.
 	 */
 	gutter?: string | [string, string] | undefined;
-
 	/**
 	 * maximum allowed width
 	 */
 	maxWidth?: string | undefined;
-
 	/**
 	 * Sets the color used for the column guides, defaults to red (rgba(255, 0, 0, 0.1))
 	 */
