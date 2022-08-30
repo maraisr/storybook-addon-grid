@@ -76,7 +76,9 @@ DifferentColor.parameters = {
 
 export const ResponsiveGrid: Story = () => (
 	<>
-		<style dangerouslySetInnerHTML={{__html:`
+		<style
+			dangerouslySetInnerHTML={{
+				__html: `
 		 body {
 		  --columns: 4;
 		  --gap: 8px;
@@ -99,10 +101,12 @@ export const ResponsiveGrid: Story = () => (
 		    }
 		  }
 
-		`}}/>
+		`,
+			}}
+		/>
 		<ComponentTest />
 	</>
-)
+);
 ResponsiveGrid.parameters = {
 	grid: {
 		columns: 'var(--columns)',

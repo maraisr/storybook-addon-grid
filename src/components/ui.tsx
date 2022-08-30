@@ -36,40 +36,40 @@ const Wrapper = styled.div<{ active: boolean; animation: boolean }>(
 	}),
 );
 
-const Grid = styled.div<Exclude<GridConfig, 'color' | 'animation'> & {grid: string}>(
-	({ gap, gutter, maxWidth, grid }) => {
-		let gutterRight = '0',
-			gutterLeft = '0';
-		if (Array.isArray(gutter)) {
-			([gutterLeft, gutterRight] = gutter)
-		} else if (gutter != null) {
-			gutterLeft = gutterRight = gutter;
-		}
+const Grid = styled.div<
+	Exclude<GridConfig, 'color' | 'animation'> & { grid: string }
+>(({ gap, gutter, maxWidth, grid }) => {
+	let gutterRight = '0',
+		gutterLeft = '0';
+	if (Array.isArray(gutter)) {
+		[gutterLeft, gutterRight] = gutter;
+	} else if (gutter != null) {
+		gutterLeft = gutterRight = gutter;
+	}
 
-		return {
-			position: 'fixed',
-			top: '0',
-			bottom: '0',
-			left: '0',
-			right: '0',
+	return {
+		position: 'fixed',
+		top: '0',
+		bottom: '0',
+		left: '0',
+		right: '0',
 
-			display: 'grid',
-			gridTemplateColumns: grid,
-			gridTemplateRows: '100%',
-			gridColumnGap: gap,
+		display: 'grid',
+		gridTemplateColumns: grid,
+		gridTemplateRows: '100%',
+		gridColumnGap: gap,
 
-			width: '100%',
-			height: '100%',
+		width: '100%',
+		height: '100%',
 
-			margin: '0 auto',
-			maxWidth,
-			padding: `0 ${gutterRight} 0 ${gutterLeft}`,
+		margin: '0 auto',
+		maxWidth,
+		padding: `0 ${gutterRight} 0 ${gutterLeft}`,
 
-			boxSizing: 'border-box',
-			pointerEvents: 'none',
-		};
-	},
-);
+		boxSizing: 'border-box',
+		pointerEvents: 'none',
+	};
+});
 
 const Column = styled.div<{ color: string }>(({ color }) => ({
 	width: '100%',
@@ -88,10 +88,13 @@ export const Grids: FunctionComponent<
 	color = 'rgba(255, 0, 0, 0.1)',
 	gutter = '50px',
 	maxWidth = '1024px',
-	maxColumns = 24
+	maxColumns = 24,
 }) => {
-	const numberOfColumns = typeof(columns) ==='number' ? columns : maxColumns;
-	const grid = typeof(columns) ==='number' ? `repeat(${columns}, 1fr)` : `repeat(var(${columns.match(/var\((.*)\)/)![1]}), 1fr)`
+	const numberOfColumns = typeof columns === 'number' ? columns : maxColumns;
+	const grid =
+		typeof columns === 'number'
+			? `repeat(${columns}, 1fr)`
+			: `repeat(var(${columns.match(/var\((.*)\)/)![1]}), 1fr)`;
 
 	const columnDivs = useMemo(
 		() =>
@@ -102,7 +105,7 @@ export const Grids: FunctionComponent<
 	);
 
 	const gridNodes = (
-		<Grid grid={grid} gap={gap} gutter={gutter} maxWidth={maxWidth} >
+		<Grid grid={grid} gap={gap} gutter={gutter} maxWidth={maxWidth}>
 			{columnDivs}
 		</Grid>
 	);
