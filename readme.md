@@ -145,7 +145,6 @@ eg:
     --columns: 8;
     --gap: 12px;
     --gutter: 24px;
-    }
   }
 }
 ```
