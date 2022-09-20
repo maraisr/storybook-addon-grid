@@ -1,6 +1,6 @@
 {
 	"name": "storybook-addon-grid",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Column guides for your stories",
 	"keywords": [
 		"storybook",
@@ -26,6 +26,14 @@
 		"./chromatic": {
 			"import": "./dist/chromatic.mjs",
 			"require": "./dist/chromatic.js"
+		},
+		"./config": {
+			"import": "./dist/config/index.mjs",
+			"require": "./dist/config/index.js"
+		},
+		"./config/chromatic": {
+			"import": "./dist/config/chromatic.mjs",
+			"require": "./dist/config/chromatic.js"
 		},
 		"./package.json": "./package.json"
 	},
