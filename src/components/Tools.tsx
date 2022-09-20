@@ -59,8 +59,15 @@ export const Tools = () => {
 
 	// Avoid some "getting ready" states
 	useEffect(() => {
-		api.once(STORY_RENDERED, () => void setReady(true));
-	}, []);
+		const handler = () => {
+			api.off(STORY_RENDERED, handler); // api.once doesnt work in strict mode here
+			setReady(true);
+		};
+
+		api.on(STORY_RENDERED, handler);
+
+		return () => api.off(STORY_RENDERED, handler);
+	}, [api]);
 
 	const disabled =
 		typeof parameters.disable === 'boolean' ? parameters.disable : false;
