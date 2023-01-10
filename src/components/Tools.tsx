@@ -25,7 +25,7 @@ export const Tools = () => {
 		setState(
 			(prev) => ({
 				...prev,
-				visible: !prev.visible,
+				visible: !prev?.visible ?? false,
 			}),
 			{
 				persistence: 'session',
