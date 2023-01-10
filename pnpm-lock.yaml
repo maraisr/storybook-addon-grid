@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': 7.19.0
+  '@marais/prettier': 0.0.1
   '@marais/tsconfig': 0.0.3
   '@storybook/addons': ^6.5.10
   '@storybook/api': ^6.5.10
@@ -37,6 +38,7 @@ dependencies:
 
 devDependencies:
   '@babel/core': 7.19.0
+  '@marais/prettier': 0.0.1
   '@marais/tsconfig': 0.0.3
   '@storybook/builder-webpack5': 6.5.10_ld6imh6jra3j7fpj2ui6wu2ua4
   '@storybook/cli': 6.5.10_rw34wyrummvuuuhgiylphbvpae
@@ -1574,6 +1576,10 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
+    dev: true
+
+  /@marais/prettier/0.0.1:
+    resolution: {integrity: sha512-2dSx4GqwgEylxvSamA5jH1XTXx9QrM89CToB1xiciJbtYv6PMWvX0lZ2viWDk2viWh91/Qd4cpBAvdi+LDKC0A==}
     dev: true
 
   /@marais/tsconfig/0.0.3:

@@ -12,11 +12,7 @@
 	],
 	"repository": "maraisr/storybook-addon-grid",
 	"license": "MIT",
-	"author": {
-		"name": "Marais Rossouw",
-		"email": "me@marais.dev",
-		"url": "https://marais.io"
-	},
+	"author": "Marais Rossow <me@marais.dev> (https://marais.io)",
 	"sideEffects": false,
 	"exports": {
 		"./preset": {
@@ -50,11 +46,12 @@
 	],
 	"scripts": {
 		"build": "node bin",
-		"format": "prettier --write --list-different \"{*,{src,example,bin,.github}/**/*}.+(ts|tsx|js|json|yml|md)\"",
 		"example": "concurrently -kr \"pnpm start-storybook --config-dir example/.storybook --port 8080 --no-manager-cache\" \"nodemon --ext tsx,ts --ignore dist/ --watch src bin\"",
+		"format": "prettier --write --list-different \"{*,{src,example,bin,.github}/**/*}.+(ts|tsx|js|json|yml|md)\"",
 		"prepublishOnly": "pnpm run build",
 		"typecheck": "tsc --noEmit"
 	},
+	"prettier": "@marais/prettier",
 	"dependencies": {
 		"@storybook/addons": "^6.5.10",
 		"@storybook/api": "^6.5.10",
@@ -65,6 +62,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "7.19.0",
+		"@marais/prettier": "0.0.1",
 		"@marais/tsconfig": "0.0.3",
 		"@storybook/builder-webpack5": "6.5.10",
 		"@storybook/cli": "6.5.10",
@@ -102,14 +100,14 @@
 			"optional": true
 		}
 	},
+	"volta": {
+		"node": "16.2.0"
+	},
 	"storybook": {
 		"displayName": "Column Guides",
 		"icon": "https://raw.githubusercontent.com/maraisr/storybook-addon-grid/main/shots/square_logo.png",
 		"unsupportedFrameworks": [
 			"react-native"
 		]
-	},
-	"volta": {
-		"node": "16.2.0"
 	}
 }
