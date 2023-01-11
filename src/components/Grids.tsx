@@ -2,6 +2,7 @@ import { useAddonState, useParameter } from '@storybook/api';
 import type { DecoratorFn } from '@storybook/react';
 import { CacheProvider, createCache } from '@storybook/theming';
 import { createPortal } from 'react-dom';
+import { memo } from 'react';
 import type { AddonParameters, AddonState } from 'storybook-addon-grid';
 import { ADDON_ID, PARAM_KEY } from '../constants';
 
@@ -27,7 +28,7 @@ const ManagerRenderedGrids = () => {
 
 const styleCache = new WeakMap();
 
-export const ManagerRenderedGridsContainer = () => {
+export const ManagerRenderedGridsContainer = memo(() => {
 	const previewIframe = document.querySelector<HTMLIFrameElement>(
 		'#storybook-preview-iframe',
 	);
@@ -54,7 +55,7 @@ export const ManagerRenderedGridsContainer = () => {
 		</CacheProvider>,
 		iframeDocument.body,
 	);
-};
+});
 
 export const withGrid: DecoratorFn = (StoryFn, context) => {
 	const { grid: gridParams } = context.parameters;

@@ -24,7 +24,6 @@ export const Tools = () => {
 	const toggleGrid = useCallback(() => {
 		setState(
 			(prev) => ({
-				...prev,
 				visible: !prev?.visible ?? false,
 			}),
 			{
@@ -35,16 +34,17 @@ export const Tools = () => {
 
 	// Keyboard events
 	useEffect(() => {
-		const handler = (event: KeyboardEvent) => {
+		function handler(event: KeyboardEvent) {
 			if (focusInInput(event)) return;
 			if (shortcutMatchesShortcut(eventToShortcut(event)!, shortcut)) {
 				event.preventDefault?.();
 				toggleGrid();
 			}
-		};
+		}
 
-		const previewHandler = (data: { event: KeyboardEvent }) =>
-			void handler(data.event);
+		function previewHandler(data: { event: KeyboardEvent }) {
+			handler(data.event);
+		}
 
 		document.addEventListener('keydown', handler);
 
@@ -59,14 +59,16 @@ export const Tools = () => {
 
 	// Avoid some "getting ready" states
 	useEffect(() => {
-		const handler = () => {
-			api.off(STORY_RENDERED, handler); // api.once doesnt work in strict mode here
-			setReady(true);
+		let mounted = true;
+		function handler() {
+			mounted && setReady(true);
+		}
+
+		api.once(STORY_RENDERED, handler);
+
+		return () => {
+			mounted = false;
 		};
-
-		api.on(STORY_RENDERED, handler);
-
-		return () => api.off(STORY_RENDERED, handler);
 	}, [api]);
 
 	const disabled =
@@ -97,7 +99,7 @@ export const Tools = () => {
 					<path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"></path>
 				</svg>
 			</IconButton>
-			{!disabled && ready ? <ManagerRenderedGridsContainer /> : null}
+			{ready && !disabled ? <ManagerRenderedGridsContainer /> : null}
 		</>
 	);
 };
