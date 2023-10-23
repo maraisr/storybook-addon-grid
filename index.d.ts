@@ -27,12 +27,7 @@ export interface GridConfig {
 /**
  * @internal
  */
-export type GridParameters = {
-	/**
-	 * Enable or Disable the guides from fading in or out when toggling the state
-	 */
-	animation?: boolean | undefined;
-} & GridConfig;
+export type GridParameters = GridConfig;
 
 export type AddonParameters = {
 	disable?: boolean | undefined;
