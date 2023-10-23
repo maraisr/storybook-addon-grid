@@ -88,6 +88,12 @@ importers:
       storybook:
         specifier: ^7.5.1
         version: 7.5.1
+      typescript:
+        specifier: 5.2.2
+        version: 5.2.2
+      vite:
+        specifier: 4.5.0
+        version: 4.5.0
 
 packages:
 
