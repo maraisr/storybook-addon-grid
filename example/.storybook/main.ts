@@ -1,7 +1,11 @@
-module.exports = {
-	core: {
-		builder: 'webpack5',
-	},
+import type { StorybookConfig } from '@storybook/react-vite';
+
+const config: StorybookConfig = {
 	stories: ['../*.stories.*'],
-	addons: ['../..'],
+	addons: ['storybook-addon-grid'],
+	framework: {
+		name: '@storybook/react-vite',
+		options: {},
+	},
 };
+export default config;
