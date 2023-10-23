@@ -1,41 +1,35 @@
-/**
- * @internal
- */
-export interface GridConfig {
-	/**
-	 * Number of columns, default: 12 max: 24
-	 */
-	columns?: number | string | undefined;
-	/**
-	 * Gap between columns
-	 */
-	gap?: string | undefined;
-	/**
-	 * Gutter (margin) on the left and/or right.
-	 */
-	gutter?: string | [string, string] | undefined;
-	/**
-	 * maximum allowed width
-	 */
-	maxWidth?: string | undefined;
-	/**
-	 * Sets the color used for the column guides, defaults to red (rgba(255, 0, 0, 0.1))
-	 */
-	color?: string | undefined;
+declare module 'storybook-addon-grid' {
+	export type GridConfig = {
+		/**
+		 * Number of columns, default: 12 max: 24
+		 */
+		columns?: number | string | undefined;
+		/**
+		 * Gap between columns
+		 */
+		gap?: string | undefined;
+		/**
+		 * Gutter (margin) on the left and/or right.
+		 */
+		gutter?: string | [string, string] | undefined;
+		/**
+		 * maximum allowed width
+		 */
+		maxWidth?: string | undefined;
+		/**
+		 * Sets the color used for the column guides, defaults to red (rgba(255, 0, 0, 0.1))
+		 */
+		color?: string | undefined;
+	};
+
+	export type AddonState = {
+		/**
+		 * Should the column guides be on by default here?
+		 */
+		visible: boolean;
+	};
+
+	export type AddonParameters = {
+		disable?: boolean | undefined;
+	} & GridConfig;
 }
-
-/**
- * @internal
- */
-export type GridParameters = GridConfig;
-
-export type AddonParameters = {
-	disable?: boolean | undefined;
-} & GridParameters;
-
-export type AddonState = {
-	/**
-	 * Should the column guides be on by default here?
-	 */
-	visible: boolean;
-};
