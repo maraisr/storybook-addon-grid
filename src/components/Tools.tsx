@@ -1,27 +1,28 @@
+import React from 'react';
+
 import { useAddonState, useParameter, useStorybookApi } from '@storybook/api';
 import {
 	eventToShortcut,
 	shortcutMatchesShortcut,
 	shortcutToHumanString,
-} from '@storybook/api/shortcut';
+} from '@storybook/manager-api';
 import { IconButton } from '@storybook/components';
 import { PREVIEW_KEYDOWN, STORY_RENDERED } from '@storybook/core-events';
-import { useCallback, useEffect, useState } from 'react';
 import type { AddonParameters, AddonState } from 'storybook-addon-grid';
 import { ADDON_ID, PARAM_KEY } from '../constants';
 import { ManagerRenderedGridsContainer } from './Grids';
 
-const shortcut = ['control', 'G'];
+let shortcut = ['control', 'G'];
 
-export const Tools = () => {
-	const parameters = useParameter<AddonParameters>(PARAM_KEY, {});
-	const [state, setState] = useAddonState<AddonState>(ADDON_ID, {
+export function Tools() {
+	let parameters = useParameter<AddonParameters>(PARAM_KEY, {});
+	let [state, setState] = useAddonState<AddonState>(ADDON_ID, {
 		visible: false,
 	});
-	const [ready, setReady] = useState(false);
-	const api = useStorybookApi();
+	let [ready, setReady] = React.useState(false);
+	let api = useStorybookApi();
 
-	const toggleGrid = useCallback(() => {
+	let toggleGrid = React.useCallback(() => {
 		setState(
 			(prev) => ({
 				visible: !prev?.visible ?? false,
@@ -33,7 +34,7 @@ export const Tools = () => {
 	}, []);
 
 	// Keyboard events
-	useEffect(() => {
+	React.useEffect(() => {
 		function handler(event: KeyboardEvent) {
 			if (focusInInput(event)) return;
 			if (shortcutMatchesShortcut(eventToShortcut(event)!, shortcut)) {
@@ -58,7 +59,7 @@ export const Tools = () => {
 	}, [api, toggleGrid]);
 
 	// Avoid some "getting ready" states
-	useEffect(() => {
+	React.useEffect(() => {
 		let mounted = true;
 		function handler() {
 			mounted && setReady(true);
@@ -71,9 +72,9 @@ export const Tools = () => {
 		};
 	}, [api]);
 
-	const disabled =
+	let disabled =
 		typeof parameters.disable === 'boolean' ? parameters.disable : false;
-	const isActive = disabled ? !disabled : state.visible;
+	let isActive = disabled ? !disabled : state.visible;
 
 	return (
 		<>
@@ -102,7 +103,7 @@ export const Tools = () => {
 			{ready && !disabled ? <ManagerRenderedGridsContainer /> : null}
 		</>
 	);
-};
+}
 
 function focusInInput(event: any) {
 	return event.target

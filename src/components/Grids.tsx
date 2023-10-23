@@ -1,21 +1,23 @@
-import { useAddonState, useParameter } from '@storybook/api';
-import type { DecoratorFn } from '@storybook/react';
-import { CacheProvider, createCache } from '@storybook/theming';
+import React from 'react';
 import { createPortal } from 'react-dom';
-import { memo } from 'react';
+
+import type { DecoratorFunction } from '@storybook/types';
+import { useAddonState, useParameter } from '@storybook/api';
+import { CacheProvider, createCache } from '@storybook/theming';
+
 import type { AddonParameters, AddonState } from 'storybook-addon-grid';
+
 import { ADDON_ID, PARAM_KEY } from '../constants';
 
 import { Grids } from './ui';
 
-const ManagerRenderedGrids = () => {
-	const { animation, columns, gap, color, gutter, maxWidth, disable } =
+function ManagerRenderedGrids() {
+	let { columns, gap, color, gutter, maxWidth, disable } =
 		useParameter<AddonParameters>(PARAM_KEY, {});
-	const [state] = useAddonState<AddonState>(ADDON_ID);
+	let [state] = useAddonState<AddonState>(ADDON_ID);
 
 	return (
 		<Grids
-			animation={animation ?? true}
 			columns={columns}
 			color={color}
 			gap={gap}
@@ -24,52 +26,50 @@ const ManagerRenderedGrids = () => {
 			maxWidth={maxWidth}
 		/>
 	);
-};
+}
 
-const styleCache = new WeakMap();
+let styleCache = new WeakMap();
 
-export const ManagerRenderedGridsContainer = memo(() => {
-	const previewIframe = document.querySelector<HTMLIFrameElement>(
-		'#storybook-preview-iframe',
-	);
-	if (!previewIframe) return null;
-
-	const iframeDocument = previewIframe.contentWindow?.document;
-	if (!iframeDocument) return null;
-
-	const head = iframeDocument.head;
-	if (!head || !iframeDocument.body) return null;
-
-	if (!styleCache.has(head))
-		styleCache.set(
-			head,
-			createCache({
-				key: ADDON_ID,
-				container: head,
-			}),
+export let ManagerRenderedGridsContainer = React.memo(
+	function ManagerRenderedGridsContainer() {
+		let previewIframe = document.querySelector<HTMLIFrameElement>(
+			'#storybook-preview-iframe',
 		);
+		if (!previewIframe) return null;
 
-	return createPortal(
-		<CacheProvider value={styleCache.get(head)}>
-			<ManagerRenderedGrids />
-		</CacheProvider>,
-		iframeDocument.body,
-	);
-});
+		let iframeDocument = previewIframe.contentWindow?.document;
+		if (!iframeDocument) return null;
 
-export const withGrid: DecoratorFn = (StoryFn, context) => {
-	const { grid: gridParams } = context.parameters;
+		let head = iframeDocument.head;
+		if (!head || !iframeDocument.body) return null;
+
+		if (!styleCache.has(head))
+			styleCache.set(
+				head,
+				createCache({
+					key: ADDON_ID,
+					container: head,
+				}),
+			);
+
+		return createPortal(
+			<CacheProvider value={styleCache.get(head)}>
+				<ManagerRenderedGrids />
+			</CacheProvider>,
+			iframeDocument.body,
+		);
+	},
+);
+
+export let withGrid: DecoratorFunction = (StoryFn, context) => {
+	let { grid: gridParams } = context.parameters;
 
 	return (
 		<>
 			{StoryFn()}
-			{gridParams != null && gridParams.disable !== true ? (
-				<Grids
-					visible
-					animation={gridParams.animation ?? true}
-					{...gridParams}
-				/>
-			) : null}
+			{gridParams != null && gridParams.disable !== true && (
+				<Grids visible {...gridParams} />
+			)}
 		</>
 	);
 };

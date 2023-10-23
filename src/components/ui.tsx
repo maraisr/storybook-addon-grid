@@ -1,43 +1,25 @@
-import { Global, keyframes, styled } from '@storybook/theming';
-import { ContinuousContainer } from '@theuiteam/continuous-container';
-import { FunctionComponent, useMemo } from 'react';
-import { ADDON_ID } from 'src/constants';
+import React from 'react';
+
+import { Global, styled } from '@storybook/theming';
+
 import type { AddonState, GridConfig } from 'storybook-addon-grid';
 
-const ANIMATION_DURATION = 130;
-const MAX_COLUMNS = 24;
+import { ADDON_ID } from '../constants';
 
-const fadeIn = keyframes`
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-`;
+let MAX_COLUMNS = 24;
 
-const fadeOut = keyframes`
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
-`;
+let Wrapper = styled.div({
+	position: 'relative',
+	zIndex: 1,
+	opacity: 0,
+	pointerEvents: 'none',
 
-const Wrapper = styled.div<{ active: boolean; animation: boolean }>(
-	({ active, animation }) => ({
-		position: 'relative',
-		zIndex: 1,
-		animation: animation
-			? `${
-					active ? fadeIn : fadeOut
-			  } ${ANIMATION_DURATION}ms ease 1 normal forwards`
-			: undefined,
-	}),
-);
+	'&[data-visible="true"]': {
+		opacity: 1,
+	},
+});
 
-const Grid = styled.div<Omit<Required<GridConfig>, 'color' | 'animation'>>(
+let Grid = styled.div<Omit<Required<GridConfig>, 'color'>>(
 	({ gap, gutter, maxWidth, columns }) => {
 		let gutterRight = '0',
 			gutterLeft = '0';
@@ -64,30 +46,26 @@ const Grid = styled.div<Omit<Required<GridConfig>, 'color' | 'animation'>>(
 			padding: `0 ${gutterRight} 0 ${gutterLeft}`,
 
 			boxSizing: 'border-box',
-			pointerEvents: 'none',
 		};
 	},
 );
 
-const Column = styled.div<{ color: string }>(({ color }) => ({
+let Column = styled.div<{ color: string }>(({ color }) => ({
 	width: '100%',
 	height: '100%',
 
 	backgroundColor: color,
 }));
 
-export const Grids: FunctionComponent<
-	GridConfig & { animation?: boolean } & AddonState
-> = ({
+export function Grids({
 	visible,
-	animation = true,
 	columns = 12,
 	gap = '20px',
 	color = 'rgba(255, 0, 0, 0.1)',
 	gutter = '50px',
 	maxWidth = '1024px',
-}) => {
-	const columnDivs = useMemo(
+}: GridConfig & AddonState) {
+	let columnDivs = React.useMemo(
 		() =>
 			Array.from({
 				length: typeof columns === 'number' ? columns : MAX_COLUMNS,
@@ -95,7 +73,7 @@ export const Grids: FunctionComponent<
 		[columns, color],
 	);
 
-	const gridNodes = (
+	let gridNodes = (
 		<Grid gap={gap} gutter={gutter} maxWidth={maxWidth} columns={columns}>
 			{columnDivs}
 		</Grid>
@@ -111,28 +89,9 @@ export const Grids: FunctionComponent<
 					},
 				}}
 			/>
-			{animation ? (
-				<ContinuousContainer<boolean>
-					value={visible}
-					exitTimeout={ANIMATION_DURATION}
-				>
-					{({ past, present, future }) =>
-						past || present || future ? (
-							<Wrapper
-								active={present}
-								data-addon-id={ADDON_ID}
-								animation={animation}
-							>
-								{gridNodes}
-							</Wrapper>
-						) : null
-					}
-				</ContinuousContainer>
-			) : visible ? (
-				<Wrapper active data-addon-id={ADDON_ID} animation={animation}>
-					{gridNodes}
-				</Wrapper>
-			) : null}
+			<Wrapper data-addon-id={ADDON_ID} data-visible={visible}>
+				{gridNodes}
+			</Wrapper>
 		</>
 	);
-};
+}
