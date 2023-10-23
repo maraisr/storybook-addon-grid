@@ -31,11 +31,11 @@ importers:
         version: 2.0.1(@types/react@18.2.31)(react@18.2.0)
     devDependencies:
       '@marais/prettier':
-        specifier: 0.0.1
-        version: 0.0.1
+        specifier: 0.0.4
+        version: 0.0.4
       '@marais/tsconfig':
-        specifier: 0.0.3
-        version: 0.0.3
+        specifier: 0.0.4
+        version: 0.0.4
       '@types/react':
         specifier: 18.2.31
         version: 18.2.31
@@ -1733,12 +1733,12 @@ packages:
   /@juggle/resize-observer@3.4.0:
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
 
-  /@marais/prettier@0.0.1:
-    resolution: {integrity: sha512-2dSx4GqwgEylxvSamA5jH1XTXx9QrM89CToB1xiciJbtYv6PMWvX0lZ2viWDk2viWh91/Qd4cpBAvdi+LDKC0A==}
+  /@marais/prettier@0.0.4:
+    resolution: {integrity: sha512-fcJgHALkAkmOyMEioqMaikXlUQLy9jj+SZjlI2AD9V0vEO1EjR3ZI5vz3y6A0Bz/PgskbyM9+F/A44850UWrhQ==}
     dev: true
 
-  /@marais/tsconfig@0.0.3:
-    resolution: {integrity: sha512-KRJiOww98fD1ODCGxTiA8EIiXDtm7VaIEVfkeQ8yHA4SUcuBib85qgM1bQ6wD8H72YR8MMmXAxTfBusLBPnqjw==}
+  /@marais/tsconfig@0.0.4:
+    resolution: {integrity: sha512-b6KCal22xP6E8wgl52rxdf8MXuffI4oJ9aTosucX4aVb97yl01wU0PzGF67oMA/i9KdzLa0rjQ0zVdZ+1pvVAg==}
     dev: true
 
   /@ndelangen/get-tarball@3.0.9:

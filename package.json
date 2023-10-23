@@ -1,103 +1,99 @@
 {
-	"name": "storybook-addon-grid",
-	"version": "0.3.1",
-	"description": "Column guides for your stories",
-	"keywords": [
-		"storybook",
-		"storybook-addon",
-		"columns",
-		"grids",
-		"guides",
-		"design"
-	],
-	"repository": "maraisr/storybook-addon-grid",
-	"license": "MIT",
-	"author": "Marais Rossow <me@marais.dev> (https://marais.io)",
-	"sideEffects": false,
-	"exports": {
-		".": "./index.js",
-		"./chromatic": {
-			"import": "./chromatic.mjs",
-			"require": "./chromatic.js"
-		},
-		"./preview": {
-			"import": "./preview.mjs",
-			"require": "./preview.js"
-		},
-		"./manager": {
-			"import": "./manager.mjs",
-			"require": "./manager.js"
-		},
-		"./package.json": "./package.json"
-	},
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"types": "index.d.ts",
-	"files": [
-		"index.mjs",
-		"index.js",
-		"chromatic.js",
-		"chromatic.mjs",
-		"preview.js",
-		"preview.mjs",
-		"manager.js",
-		"manager.mjs"
-	],
-	"scripts": {
-		"build": "bundt",
-		"example": "pnpm --filter example storybook dev",
-		"format": "prettier --write --list-different \"{*,{src,example,bin,.github}/**/*}.+(ts|tsx|js|json|yml|md)\"",
-		"prepublishOnly": "pnpm run build",
-		"typecheck": "tsc --noEmit"
-	},
-	"prettier": "@marais/prettier",
-	"dependencies": {
-		"@storybook/api": "^7.5.1",
-		"@storybook/components": "^7.5.1",
-		"@storybook/core-events": "^7.5.1",
-		"@storybook/manager-api": "^7.5.1",
-		"@storybook/theming": "^7.5.1",
-		"@storybook/types": "^7.5.1",
-		"@theuiteam/continuous-container": "^2.0.1"
-	},
-	"devDependencies": {
-		"@marais/prettier": "0.0.1",
-		"@marais/tsconfig": "0.0.3",
-		"@types/react": "18.2.31",
-		"@types/react-dom": "18.2.14",
-		"bundt": "2.0.0-next.5",
-		"chromatic": "7.4.0",
-		"prettier": "3.0.3",
-		"react": "18.2.0",
-		"react-dom": "18.2.0",
-		"typescript": "5.2.2"
-	},
-	"peerDependencies": {
-		"@types/react": ">=16.9.0",
-		"@types/react-dom": ">=16.9.0",
-		"chromatic": "*",
-		"react": ">=17",
-		"react-dom": ">=17"
-	},
-	"peerDependenciesMeta": {
-		"@types/react": {
-			"optional": true
-		},
-		"@types/react-dom": {
-			"optional": true
-		},
-		"chromatic": {
-			"optional": true
-		}
-	},
-	"volta": {
-		"node": "16.2.0"
-	},
-	"storybook": {
-		"displayName": "Column Guides",
-		"icon": "https://raw.githubusercontent.com/maraisr/storybook-addon-grid/main/shots/square_logo.png",
-		"unsupportedFrameworks": [
-			"react-native"
-		]
-	}
+  "name": "storybook-addon-grid",
+  "version": "0.3.1",
+  "description": "Column guides for your stories",
+  "keywords": [
+    "storybook",
+    "storybook-addon",
+    "columns",
+    "grids",
+    "guides",
+    "design"
+  ],
+  "repository": "maraisr/storybook-addon-grid",
+  "license": "MIT",
+  "author": "Marais Rossow <me@marais.dev> (https://marais.io)",
+  "sideEffects": false,
+  "exports": {
+    ".": "./index.js",
+    "./chromatic": {
+      "import": "./chromatic.mjs",
+      "require": "./chromatic.js"
+    },
+    "./preview": {
+      "import": "./preview.mjs",
+      "require": "./preview.js"
+    },
+    "./manager": {
+      "import": "./manager.mjs",
+      "require": "./manager.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "files": [
+    "index.mjs",
+    "index.js",
+    "chromatic.js",
+    "chromatic.mjs",
+    "preview.js",
+    "preview.mjs",
+    "manager.js",
+    "manager.mjs"
+  ],
+  "scripts": {
+    "build": "bundt",
+    "example": "pnpm --filter example storybook dev",
+    "format": "prettier --write --list-different \"{*,{src,example,bin,.github}/**/*}.+(ts|tsx|js|json|yml|md)\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "prettier": "@marais/prettier",
+  "dependencies": {
+    "@storybook/api": "^7.5.1",
+    "@storybook/components": "^7.5.1",
+    "@storybook/core-events": "^7.5.1",
+    "@storybook/manager-api": "^7.5.1",
+    "@storybook/theming": "^7.5.1",
+    "@storybook/types": "^7.5.1",
+    "@theuiteam/continuous-container": "^2.0.1"
+  },
+  "devDependencies": {
+    "@marais/prettier": "0.0.4",
+    "@marais/tsconfig": "0.0.4",
+    "@types/react": "18.2.31",
+    "@types/react-dom": "18.2.14",
+    "bundt": "2.0.0-next.5",
+    "chromatic": "7.4.0",
+    "prettier": "3.0.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.2.2"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.9.0",
+    "@types/react-dom": ">=16.9.0",
+    "chromatic": "*",
+    "react": ">=17",
+    "react-dom": ">=17"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "@types/react-dom": {
+      "optional": true
+    },
+    "chromatic": {
+      "optional": true
+    }
+  },
+  "storybook": {
+    "displayName": "Column Guides",
+    "icon": "https://raw.githubusercontent.com/maraisr/storybook-addon-grid/main/shots/square_logo.png",
+    "unsupportedFrameworks": [
+      "react-native"
+    ]
+  }
 }

@@ -1,16 +1,16 @@
 {
-	"extends": "@marais/tsconfig",
-	"compilerOptions": {
-		"jsx": "react-jsx",
-		"noEmit": true,
-		"declaration": false,
-		"removeComments": false,
-		"lib": ["DOM", "ESNext"],
-		"baseUrl": ".",
-		"paths": {
-			"storybook-addon-grid": ["index.d.ts"]
-		}
-	},
-	"include": ["src/**/*.ts", "src/**/*.tsx"],
-	"exclude": ["node_modules"]
+  "extends": "@marais/tsconfig",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "declaration": false,
+    "removeComments": false,
+    "lib": ["DOM", "ESNext"],
+    "baseUrl": ".",
+    "paths": {
+      "storybook-addon-grid": ["index.d.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules"]
 }
