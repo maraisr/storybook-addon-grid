@@ -1,4 +1,4 @@
-import addons, { types } from '@storybook/addons';
+import { addons, types } from '@storybook/manager-api';
 import { Tools } from './components/Tools';
 import { ADDON_ID, PARAM_KEY, PANEL_ID } from './constants';
 
