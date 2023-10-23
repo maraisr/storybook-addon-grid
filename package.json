@@ -15,72 +15,62 @@
 	"author": "Marais Rossow <me@marais.dev> (https://marais.io)",
 	"sideEffects": false,
 	"exports": {
-		"./preset": {
-			"import": "./dist/preset.mjs",
-			"require": "./dist/preset.js"
-		},
+		".": "./index.js",
 		"./chromatic": {
-			"import": "./dist/chromatic.mjs",
-			"require": "./dist/chromatic.js"
+			"import": "./chromatic.mjs",
+			"require": "./chromatic.js"
 		},
-		"./config": {
-			"import": "./dist/config/index.mjs",
-			"require": "./dist/config/index.js"
+		"./preview": {
+			"import": "./preview.mjs",
+			"require": "./preview.js"
 		},
-		"./config/chromatic": {
-			"import": "./dist/config/chromatic.mjs",
-			"require": "./dist/config/chromatic.js"
+		"./manager": {
+			"import": "./manager.mjs",
+			"require": "./manager.js"
 		},
 		"./package.json": "./package.json"
 	},
-	"main": "dist/preset.js",
-	"module": "dist/preset.mjs",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
 	"types": "index.d.ts",
 	"files": [
-		"dist",
-		"preset.js",
-		"preset.mjs",
+		"index.mjs",
+		"index.js",
 		"chromatic.js",
 		"chromatic.mjs",
-		"index.d.ts"
+		"preview.js",
+		"preview.mjs",
+		"manager.js",
+		"manager.mjs"
 	],
 	"scripts": {
-		"build": "node bin",
-		"example": "concurrently -kr \"pnpm start-storybook --config-dir example/.storybook --port 8080 --no-manager-cache\" \"nodemon --ext tsx,ts --ignore dist/ --watch src bin\"",
+		"build": "bundt",
+		"example": "pnpm --filter example storybook dev",
 		"format": "prettier --write --list-different \"{*,{src,example,bin,.github}/**/*}.+(ts|tsx|js|json|yml|md)\"",
 		"prepublishOnly": "pnpm run build",
 		"typecheck": "tsc --noEmit"
 	},
 	"prettier": "@marais/prettier",
 	"dependencies": {
-		"@storybook/addons": "^6.5.12",
-		"@storybook/api": "^6.5.12",
-		"@storybook/components": "^6.5.12",
-		"@storybook/core-events": "^6.5.12",
-		"@storybook/theming": "^6.5.12",
+		"@storybook/api": "^7.5.1",
+		"@storybook/components": "^7.5.1",
+		"@storybook/core-events": "^7.5.1",
+		"@storybook/manager-api": "^7.5.1",
+		"@storybook/theming": "^7.5.1",
+		"@storybook/types": "^7.5.1",
 		"@theuiteam/continuous-container": "^2.0.1"
 	},
 	"devDependencies": {
-		"@babel/core": "7.19.0",
 		"@marais/prettier": "0.0.1",
 		"@marais/tsconfig": "0.0.3",
-		"@storybook/builder-webpack5": "6.5.12",
-		"@storybook/cli": "6.5.12",
-		"@storybook/manager-webpack5": "6.5.12",
-		"@storybook/react": "6.5.12",
-		"@types/node": "18.7.15",
-		"@types/react": "18.0.18",
-		"@types/react-dom": "18.0.6",
-		"chromatic": "6.9.0",
-		"concurrently": "7.3.0",
-		"cross-env": "7.0.3",
-		"esbuild": "0.15.7",
-		"nodemon": "2.0.19",
-		"prettier": "2.7.1",
-		"react": "17.0.2",
-		"react-dom": "17.0.2",
-		"typescript": "4.8.2",
-		"webpack": "5.74.0"
+		"@types/react": "18.2.31",
+		"@types/react-dom": "18.2.14",
+		"bundt": "2.0.0-next.5",
+		"chromatic": "7.4.0",
+		"prettier": "3.0.3",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"typescript": "5.2.2"
 	},
 	"peerDependencies": {
 		"@types/react": ">=16.9.0",
