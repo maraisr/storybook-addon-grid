@@ -8,8 +8,7 @@
 
 `npm install storybook-addon-grid` keeps your stories in rhythm
 
-[![npm stats](https://badgen.net/npm/dm/storybook-addon-grid)](https://npm-stat.com/charts.html?package=storybook-addon-grid)
-[![bundle size](https://badgen.net/bundlephobia/minzip/meros)](https://bundlephobia.com/result?p=storybook-addon-grid)
+[![npm stats](https://badgen.net/npm/dm/storybook-addon-grid)](https://npm-stat.com/charts.html?package=storybook-addon-grid) [![licenses](https://licenses.dev/b/npm/storybook-addon-grid?style=dark)](https://licenses.dev/npm/storybook-addon-grid) [![bundle size](https://badgen.net/bundlephobia/minzip/meros)](https://bundlephobia.com/result?p=storybook-addon-grid)
 
 <br />
 
