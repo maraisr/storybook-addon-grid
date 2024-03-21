@@ -61,14 +61,14 @@
   "devDependencies": {
     "@marais/prettier": "0.0.4",
     "@marais/tsconfig": "0.0.4",
-    "@types/react": "18.2.31",
-    "@types/react-dom": "18.2.14",
+    "@types/react": "18.2.67",
+    "@types/react-dom": "18.2.22",
     "bundt": "2.0.0-next.5",
-    "chromatic": "7.4.0",
-    "prettier": "3.0.3",
+    "chromatic": "11.2.0",
+    "prettier": "3.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.2.2"
+    "typescript": "5.4.3"
   },
   "peerDependencies": {
     "@types/react": ">=16.9.0",
