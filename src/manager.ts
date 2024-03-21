@@ -1,5 +1,5 @@
 import { addons, types } from '@storybook/manager-api';
-import { Tools } from './components/Tools';
+import { Tool } from './components/Tools';
 import { ADDON_ID, PARAM_KEY, PANEL_ID } from './constants';
 
 addons.register(ADDON_ID, () => {
@@ -8,6 +8,6 @@ addons.register(ADDON_ID, () => {
 		type: types.TOOL,
 		paramKey: PARAM_KEY,
 		match: ({ viewMode }) => viewMode === 'story',
-		render: Tools,
+		render: Tool,
 	});
 });

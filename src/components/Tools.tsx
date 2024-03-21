@@ -18,7 +18,9 @@ import { ManagerRenderedGridsContainer } from './Grids';
 
 let shortcut = ['control', 'G'];
 
-export function Tools() {
+export const Tool = React.memo(ToolComponent);
+
+function ToolComponent() {
 	let parameters = useParameter<AddonParameters>(PARAM_KEY, {});
 	let [state, setState] = useAddonState<AddonState>(ADDON_ID, {
 		visible: false,
