@@ -5,13 +5,8 @@ import {
 	useParameter,
 	useStorybookApi,
 } from '@storybook/manager-api';
-import {
-	eventToShortcut,
-	shortcutMatchesShortcut,
-	shortcutToHumanString,
-} from '@storybook/manager-api';
 import { IconButton } from '@storybook/components';
-import { PREVIEW_KEYDOWN, STORY_RENDERED } from '@storybook/core-events';
+import { STORY_RENDERED } from '@storybook/core-events';
 import type { AddonParameters, AddonState } from 'storybook-addon-grid';
 import { ADDON_ID, PARAM_KEY } from '../constants';
 import { ManagerRenderedGridsContainer } from './Grids';
@@ -39,29 +34,14 @@ function ToolComponent() {
 		);
 	}, []);
 
-	// Keyboard events
 	React.useEffect(() => {
-		function handler(event: KeyboardEvent) {
-			if (focusInInput(event)) return;
-			if (shortcutMatchesShortcut(eventToShortcut(event)!, shortcut)) {
-				event.preventDefault?.();
-				toggleGrid();
-			}
-		}
-
-		function previewHandler(data: { event: KeyboardEvent }) {
-			handler(data.event);
-		}
-
-		document.addEventListener('keydown', handler);
-
-		// KeyDown events from the preview iframe.
-		api.on(PREVIEW_KEYDOWN, previewHandler);
-
-		return () => {
-			document.removeEventListener('keydown', handler);
-			api.off(PREVIEW_KEYDOWN, previewHandler);
-		};
+		api.setAddonShortcut(ADDON_ID, {
+			label: 'Toggle Column Guides',
+			action: toggleGrid,
+			actionName: 'toggle-column-grid',
+			defaultShortcut: shortcut,
+			showInMenu: true,
+		});
 	}, [api, toggleGrid]);
 
 	// Avoid some "getting ready" states
@@ -85,9 +65,7 @@ function ToolComponent() {
 	return (
 		<>
 			<IconButton
-				title={`Turn on Column Grid [${shortcutToHumanString(
-					shortcut,
-				)}]`}
+				title="Toggle Column Guides"
 				disabled={disabled}
 				active={isActive}
 				onClick={toggleGrid}
@@ -110,11 +88,4 @@ function ToolComponent() {
 			{ready && !disabled ? <ManagerRenderedGridsContainer /> : null}
 		</>
 	);
-}
-
-function focusInInput(event: any) {
-	return event.target
-		? /input|textarea/i.test(event.target.tagName) ||
-				event.target.getAttribute('contenteditable') !== null
-		: false;
 }
