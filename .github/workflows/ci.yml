@@ -27,11 +27,10 @@ jobs:
           cache: pnpm
           check-latest: true
 
-      - name: Install
-        run: pnpm install
+      - name: (env) globals
+        run: pnpm add -g oxlint
 
-      - name: Compiles
-        run: pnpm run build
-
-      - name: Check Types
-        run: pnpm run typecheck
+      - run: pnpm install
+      - run: oxlint .
+      - run: pnpm run build
+      - run: pnpm run typecheck

@@ -25,7 +25,7 @@ export function Tools() {
 	let toggleGrid = React.useCallback(() => {
 		setState(
 			(prev) => ({
-				visible: !prev?.visible ?? false,
+				visible: !prev?.visible || false,
 			}),
 			{
 				persistence: 'session',
