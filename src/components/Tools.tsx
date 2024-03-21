@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { useAddonState, useParameter, useStorybookApi } from '@storybook/api';
+import {
+	useAddonState,
+	useParameter,
+	useStorybookApi,
+} from '@storybook/manager-api';
 import {
 	eventToShortcut,
 	shortcutMatchesShortcut,
