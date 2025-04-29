@@ -8,8 +8,6 @@
 
 `npm install storybook-addon-grid` keeps your stories in rhythm
 
-**A tiny utility for batching and caching operations**
-
 <a href="https://npm-stat.com/charts.html?package=storybook-addon-grid">
   <img src="https://badgen.net/npm/dm/storybook-addon-grid?color=black&label=npm%20downloads" alt="js downloads">
 </a>
