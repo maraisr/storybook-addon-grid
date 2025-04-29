@@ -1,2 +1,4 @@
 packages:
- - "example"
+  - example
+ignoredBuiltDependencies:
+  - esbuild
