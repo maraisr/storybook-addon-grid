@@ -28,9 +28,10 @@ function ToolComponent() {
 			(prev) => ({
 				visible: !prev?.visible || false,
 			}),
-			{
-				persistence: 'session',
-			},
+			// TODO: This breaks in Storybook ^8.5
+			// {
+			// 	persistence: 'session',
+			// },
 		);
 	}, []);
 
