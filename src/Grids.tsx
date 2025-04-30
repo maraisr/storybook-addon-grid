@@ -7,7 +7,7 @@ import { CacheProvider, createCache } from '@storybook/theming';
 
 import type { AddonParameters, AddonState } from 'storybook-addon-grid';
 
-import { ADDON_ID, PARAM_KEY } from '../constants';
+import { ADDON_ID, PARAM_KEY } from './constants';
 
 import { Grids } from './ui';
 

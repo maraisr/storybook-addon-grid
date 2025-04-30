@@ -4,7 +4,7 @@ import { Global, styled } from '@storybook/theming';
 
 import type { AddonState, GridConfig } from 'storybook-addon-grid';
 
-import { ADDON_ID } from '../constants';
+import { ADDON_ID } from './constants';
 
 let MAX_COLUMNS = 24;
 

@@ -8,7 +8,7 @@ import {
 import { IconButton } from '@storybook/components';
 import { STORY_RENDERED } from '@storybook/core-events';
 import type { AddonParameters, AddonState } from 'storybook-addon-grid';
-import { ADDON_ID, PARAM_KEY } from '../constants';
+import { ADDON_ID, PARAM_KEY } from './constants';
 import { ManagerRenderedGridsContainer } from './Grids';
 
 let shortcut = ['control', 'G'];
