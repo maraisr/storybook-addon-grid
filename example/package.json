@@ -6,13 +6,11 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
-    "@storybook/blocks": "^8.5.2",
-    "@storybook/react": "^8.5.2",
-    "@storybook/react-vite": "^8.5.2",
-    "prop-types": "^15.8.1",
+    "@storybook/react": "next",
+    "@storybook/react-vite": "next",
     "react": "^18",
     "react-dom": "^18",
-    "storybook": "^8.5.2",
+    "storybook": "next",
     "typescript": "5.8.3",
     "vite": "6.3.3"
   },

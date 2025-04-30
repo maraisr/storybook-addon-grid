@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Global, styled } from '@storybook/theming';
+import { Global, styled } from 'storybook/theming';
 
 import type { AddonState, GridConfig } from 'storybook-addon-grid';
 

@@ -1,13 +1,11 @@
 import React from 'react';
 
-import {
-	useAddonState,
-	useParameter,
-	useStorybookApi,
-} from '@storybook/manager-api';
-import { IconButton } from '@storybook/components';
-import { STORY_RENDERED } from '@storybook/core-events';
+import { useAddonState, useParameter, useStorybookApi } from 'storybook/manager-api';
+import { IconButton } from 'storybook/internal/components';
+import { STORY_RENDERED } from 'storybook/internal/core-events';
+
 import type { AddonParameters, AddonState } from 'storybook-addon-grid';
+
 import { ADDON_ID, PARAM_KEY } from './constants';
 import { ManagerRenderedGridsContainer } from './Grids';
 
