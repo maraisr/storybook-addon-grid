@@ -63,7 +63,7 @@ function ToolComponent() {
 	let isActive = disabled ? !disabled : state.visible;
 
 	return (
-		<>
+		<React.Fragment key={ADDON_ID}>
 			<IconButton
 				title="Toggle Column Guides"
 				disabled={disabled}
@@ -86,6 +86,6 @@ function ToolComponent() {
 				</svg>
 			</IconButton>
 			{ready && !disabled ? <ManagerRenderedGridsContainer /> : null}
-		</>
+		</React.Fragment>
 	);
 }

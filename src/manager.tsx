@@ -9,6 +9,8 @@ addons.register(ADDON_ID, () => {
 		title: 'Column Grid',
 		paramKey: PARAM_KEY,
 		match: ({ viewMode, tabId }) => !!(viewMode && viewMode.match(/^(story|docs)$/)) && !tabId,
-		render: Tool,
+		render() {
+			return <Tool />;
+		},
 	});
 });
