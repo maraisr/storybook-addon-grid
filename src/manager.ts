@@ -5,10 +5,10 @@ import { Tool } from './Tool';
 
 addons.register(ADDON_ID, () => {
 	addons.add(ADDON_ID, {
-		title: '',
 		type: types.TOOL,
+		title: 'Column Grid',
 		paramKey: PARAM_KEY,
-		match: ({ viewMode }) => viewMode === 'story',
+		match: ({ viewMode, tabId }) => !!(viewMode && viewMode.match(/^(story|docs)$/)) && !tabId,
 		render: Tool,
 	});
 });
