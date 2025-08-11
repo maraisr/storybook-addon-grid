@@ -1,9 +1,9 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 
-import type { DecoratorFunction } from '@storybook/types';
-import { useAddonState, useParameter } from '@storybook/manager-api';
-import { CacheProvider, createCache } from '@storybook/theming';
+import { useAddonState, useParameter } from 'storybook/manager-api';
+import { CacheProvider, createCache } from 'storybook/theming';
+import type { DecoratorFunction } from 'storybook/internal/types';
 
 import type { AddonParameters, AddonState } from 'storybook-addon-grid';
 
@@ -21,7 +21,7 @@ function ManagerRenderedGrids() {
 			columns={columns}
 			color={color}
 			gap={gap}
-			visible={disable != null ? !disable : state?.visible ?? false}
+			visible={disable != null ? !disable : (state?.visible ?? false)}
 			gutter={gutter}
 			maxWidth={maxWidth}
 		/>
