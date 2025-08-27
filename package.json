@@ -16,33 +16,20 @@
   "sideEffects": false,
   "exports": {
     ".": "./index.js",
-    "./chromatic": {
-      "import": "./chromatic.mjs",
-      "require": "./chromatic.js"
-    },
-    "./preview": {
-      "import": "./preview.mjs",
-      "require": "./preview.js"
-    },
-    "./manager": {
-      "import": "./manager.mjs",
-      "require": "./manager.js"
-    },
+    "./chromatic": "./chromatic.js",
+    "./preview": "./preview.js",
+    "./manager": "./manager.js",
     "./package.json": "./package.json"
   },
   "main": "index.js",
-  "module": "index.mjs",
   "types": "index.d.ts",
+  "type": "module",
   "files": [
-    "index.mjs",
     "index.js",
     "index.d.ts",
     "chromatic.js",
-    "chromatic.mjs",
     "preview.js",
-    "preview.mjs",
     "manager.js",
-    "manager.mjs",
     "README.md"
   ],
   "scripts": {
@@ -55,10 +42,10 @@
   "devDependencies": {
     "@marais/prettier": "0.0.4",
     "@marais/tsconfig": "0.0.4",
-    "@types/react-dom": "^18",
-    "@types/react": "^18",
-    "react-dom": "^18",
-    "react": "^18",
+    "@types/react-dom": "^19",
+    "@types/react": "^19",
+    "react-dom": "^19",
+    "react": "^19",
     "bundt": "2.0.0-next.5",
     "chromatic": "11.28.2",
     "prettier": "3.5.3",

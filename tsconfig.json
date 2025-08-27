@@ -1,7 +1,7 @@
 {
   "extends": "@marais/tsconfig",
   "compilerOptions": {
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "noEmit": true,
     "declaration": false,
     "removeComments": false,

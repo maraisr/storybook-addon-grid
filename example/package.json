@@ -6,13 +6,13 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
-    "@storybook/react": "next",
-    "@storybook/react-vite": "next",
-    "react": "^18",
-    "react-dom": "^18",
-    "storybook": "next",
-    "typescript": "5.8.3",
-    "vite": "6.3.3"
+    "@storybook/react": "latest",
+    "@storybook/react-vite": "latest",
+    "react": "^19",
+    "react-dom": "^19",
+    "storybook": "latest",
+    "typescript": "latest",
+    "vite": "latest"
   },
   "dependencies": {
     "storybook-addon-grid": "workspace:^"
