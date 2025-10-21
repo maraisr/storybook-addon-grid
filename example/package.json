@@ -6,11 +6,11 @@
     "build-storybook": "storybook build"
   },
   "devDependencies": {
-    "@storybook/react": "latest",
-    "@storybook/react-vite": "latest",
+    "@storybook/react": "next",
+    "@storybook/react-vite": "next",
     "react": "^19",
     "react-dom": "^19",
-    "storybook": "latest",
+    "storybook": "next",
     "typescript": "latest",
     "vite": "latest"
   },

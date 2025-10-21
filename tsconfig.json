@@ -4,6 +4,7 @@
     "jsx": "preserve",
     "noEmit": true,
     "declaration": false,
+    "moduleResolution": "bundler",
     "removeComments": false,
     "lib": ["DOM", "ESNext"],
     "baseUrl": ".",
